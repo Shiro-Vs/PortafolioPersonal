@@ -1,0 +1,9 @@
+/* 🎯 Solo aplicar al archivo llamado RobertVs */
+.monaco-icon-label[title*="RobertVs"]:before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  background-image: url("./icono.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
