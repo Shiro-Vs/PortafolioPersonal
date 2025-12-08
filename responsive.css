@@ -1,0 +1,162 @@
+/* -------- RESPONSIVE Y MEDIA QUERIES -------- */
+
+/* -------- 1280px -------- */
+@media (max-width: 1280px) {
+  #sobreMi .sobre-grid {
+    width: 100%;
+    height: auto;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 42px;
+    padding: 0 8px;
+  }
+  #sobreMi .contenedor {
+    height: auto;
+  }
+  .presentacion-img img {
+    height: 420px;
+  }
+
+  #proyectos {
+    width: 86%;
+  }
+}
+
+/* -------- 1200px -------- */
+@media (max-width: 1200px) {
+  #lenguajes,
+  #contacto {
+    width: 86%;
+  }
+
+  #contacto form {
+    width: 90%;
+    margin-left: 40px;
+  }
+}
+
+/* -------- 1024px -------- */
+@media (max-width: 1024px) {
+  #sobreMi .sobre-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .flip-container {
+    margin: 0 auto;
+  }
+}
+
+/* -------- 900px -------- */
+@media (max-width: 900px) {
+  .contenido {
+    grid-template-columns: 1fr;
+  }
+
+  #contacto form {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* -------- 820px -------- */
+@media (max-width: 820px) {
+  #lenguajes,
+  #proyectos {
+    width: 92%;
+    padding: 48px 0;
+  }
+
+  .proyectos-card {
+    gap: 28px;
+  }
+
+  .logos {
+    grid-template-columns: 1fr;
+  }
+
+  .item svg,
+  .item img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .proyecto.tarjeta {
+    min-height: 460px;
+  }
+  .proyecto .miniatura {
+    height: 180px;
+  }
+
+  .logos {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* -------- 640px -------- */
+@media (max-width: 640px) {
+  #sobreMi {
+    padding: 36px 0;
+  }
+  #sobreMi .contenedor {
+    padding: 18px 20px;
+  }
+
+  .presentacion-img img {
+    height: 300px;
+    max-width: 340px;
+  }
+
+  #contacto {
+    width: 92%;
+    padding: 48px 0;
+  }
+
+  #contacto form {
+    gap: 16px;
+    padding: 20px;
+  }
+}
+
+/* -------- 520px -------- */
+@media (max-width: 520px) {
+  .etiqueta {
+    font-size: 1.4rem;
+  }
+  .item {
+    padding: 10px 14px;
+  }
+}
+
+/* -------- 480px -------- */
+@media (max-width: 480px) {
+  .titulo {
+    font-size: 1.8rem;
+  }
+  .etiqueta {
+    font-size: 1.2rem;
+  }
+
+  .envoltorio {
+    padding: 0 16px;
+  }
+
+  #sobreMi .contenedor {
+    padding: 20px 15px;
+    height: auto;
+  }
+
+  .flip-container {
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
+  }
+
+  .redes {
+    justify-content: center;
+    margin-top: 1.5rem;
+  }
+
+  .proyecto.tarjeta {
+    min-height: auto;
+  }
+}
