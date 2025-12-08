@@ -13,6 +13,12 @@
   --radius-xl: 20px;
   --section-width: 75%;
   --grid-width: 90%;
+
+  /* Nuevas Variables Consolidadas */
+  --bg-boton-hover: rgb(212, 229, 245);
+  --bg-flip-back: aliceblue;
+  --shadow-glow: rgba(255, 255, 255, 0.45);
+  --color-etiqueta-borde: #333;
 }
 
 * {
@@ -21,10 +27,20 @@
   box-sizing: border-box;
 }
 
-html,
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  background-color: #020111; /* Fallback oscuro */
+}
+
 body {
   height: 100%;
   scrollbar-width: none;
+  background-color: transparent;
+  /* isolation removed */
 }
 html::-webkit-scrollbar {
   display: none;
@@ -34,19 +50,32 @@ body {
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     sans-serif;
   color: var(--casi-blanco);
-  background: url("./Imagenes/Fondo.jpg") repeat fixed;
-  background-size: 438px 628px;
   line-height: 1.6;
-  animation: fondoScroll 30s linear infinite;
+  background-color: transparent; /* Transparente para ver el canvas */
+  position: relative;
 }
 
-@keyframes fondoScroll {
-  from {
-    background-position: 0 0;
-  }
-  to {
-    background-position: 0 628px;
-  }
+/* Ensure all content sits above the canvas */
+body > *:not(#fondo-interactivo) {
+  position: relative;
+  z-index: 1;
+}
+
+/* Configuracion del Canvas de Fondo */
+#fondo-interactivo {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #010105 40%,
+    #020210 100%
+  ); /* Degradado Espacio Profundo */
 }
 
 h1,
@@ -92,7 +121,9 @@ h3 {
   margin-top: 1rem;
   font-weight: 700;
   font-size: clamp(1.2rem, 4vw, 2rem);
-  border-right: 2px solid #333;
+  font-size: clamp(1.2rem, 4vw, 2rem);
+  border-right: 2px solid var(--color-etiqueta-borde);
+  padding-right: 6px;
   padding-right: 6px;
   animation: blink 0.7s steps(1) infinite;
   white-space: nowrap;
@@ -165,7 +196,7 @@ h3 {
   height: 100%;
   position: relative;
   transform-style: preserve-3d;
-  animation: flipLoop 14s infinite ease-in-out;
+  animation: flipLoop 8s infinite ease-in-out;
 }
 
 .flip-card-front,
@@ -174,7 +205,7 @@ h3 {
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
-  background-color: aliceblue;
+  background-color: var(--bg-flip-back);
   border-radius: 50%;
   box-shadow: 0 0 50px 10px rgba(255, 255, 255, 0.35);
 }
@@ -255,6 +286,7 @@ h3 {
   padding: 8px 10px;
   border-radius: var(--radius-sm);
   transition: transform 0.18s ease, background-color 0.18s ease;
+  will-change: transform;
 }
 
 .item:hover {
@@ -290,7 +322,7 @@ h3 {
 }
 
 .proyecto.tarjeta:hover {
-  box-shadow: 0 0 25px rgba(255, 255, 255, 0.45);
+  box-shadow: 0 0 25px var(--shadow-glow);
 }
 
 .proyecto .miniatura {
@@ -361,7 +393,7 @@ h3 {
 
 .boton:hover {
   color: var(--negro);
-  background-color: rgb(212, 229, 245);
+  background-color: var(--bg-boton-hover);
   transform: scale(1.03);
 }
 
@@ -408,7 +440,8 @@ h3 {
 
 .entrada:focus {
   border-color: var(--azul-claro);
-  box-shadow: 0 0 0 3px rgba(135, 149, 201, 0.2);
+  box-shadow: 0 0 0 3px rgba(135, 149, 201, 0.5); /* Aumentado contraste */
+  outline: 2px solid transparent; /* Asegura visibilidad en modo alto contraste */
 }
 
 textarea.entrada {
@@ -455,4 +488,24 @@ footer {
 
 footer p {
   font-weight: 600;
+}
+
+/* -------- ANIMACIONES (Anime.js Hooks) -------- */
+.oculto {
+  opacity: 0;
+  /* El resto lo maneja Anime.js */
+}
+
+/* Preferencias de Movimiento Reducido */
+@media (prefers-reduced-motion: reduce) {
+  .etiqueta,
+  #contacto .boton,
+  .redes a:hover svg,
+  .item:hover,
+  .itemPro:hover,
+  .boton:hover {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
 }
