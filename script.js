@@ -267,8 +267,8 @@ document.addEventListener("DOMContentLoaded", () => {
       this.x = Math.random() * width;
       this.y = Math.random() * height;
       this.size = Math.random() * 2 + 0.5;
-      this.opacity = Math.random() * 0.7 + 0.3;
-      this.speedY = Math.random() * 0.5 + this.size * 0.3;
+      this.opacity = Math.random() * 0.5 + 0.1;
+      this.speedY = Math.random() * 0.2 + this.size * 0.1;
 
       // Interpolation values
       this.currentSize = this.size;
