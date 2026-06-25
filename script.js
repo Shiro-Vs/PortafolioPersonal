@@ -235,6 +235,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // --- Carrusel Infinito (Marquee) ---
+  const logosContainers = document.querySelectorAll('.logos');
+  logosContainers.forEach(container => {
+    const originalContent = container.innerHTML;
+    // Multiplicamos por 10 para garantizar que incluso las categorías con 2 o 3 items llenen la pantalla
+    let newContent = '';
+    for(let i = 0; i < 10; i++) {
+      newContent += originalContent;
+    }
+    container.innerHTML = newContent;
+  });
 });
 
 // --- Fondo Interactivo (Estrellas) ---
