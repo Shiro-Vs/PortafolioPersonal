@@ -63,12 +63,8 @@ Copia una tarjeta existente en la sección `#proyectos` de `index.html` y modifi
 **Robert Vasquez Sanchez** - [@Shiro-Vs](https://github.com/Shiro-Vs)
 
 - 📧 [robert.vs@outlook.com](mailto:robert.vs@outlook.com)
-- 💼 [LinkedIn](https://www.linkedin.com/in/tu-usuario)
+- 💼 [LinkedIn](https://www.linkedin.com/in/shirovs)
 - 🐙 [GitHub](https://github.com/Shiro-Vs)
-
-## 📄 Licencia
-
-MIT License - Ver [LICENSE](LICENSE) para más detalles.
 
 ---
 
