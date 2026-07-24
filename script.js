@@ -240,9 +240,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const logosContainers = document.querySelectorAll('.logos');
   logosContainers.forEach(container => {
     const originalContent = container.innerHTML;
-    // Multiplicamos por 10 para garantizar que incluso las categorías con 2 o 3 items llenen la pantalla
+    // Multiplicamos por 5 para garantizar que incluso las categorías con 2 o 3 items llenen la pantalla
     let newContent = '';
-    for(let i = 0; i < 10; i++) {
+    for(let i = 0; i < 5; i++) {
       newContent += originalContent;
     }
     container.innerHTML = newContent;
@@ -260,7 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Configuración
   const config = {
-    starCount: 1500, // Requerimiento: MUCHAS estrellas y parpadeo
+    starCount: window.innerWidth < 768 ? 500 : 1500, // Menos estrellas en móviles
     mouseDist: 150, // Radio de repulsión aumentado
     mousePush: 3, // Fuerza de empuje
   };
@@ -334,13 +334,14 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  let rafId = null;
   function animate() {
     ctx.clearRect(0, 0, width, height);
     for (let star of stars) {
       star.update();
       star.draw();
     }
-    requestAnimationFrame(animate);
+    rafId = requestAnimationFrame(animate);
   }
 
   // Eventos y Loop
@@ -353,6 +354,16 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("mouseout", () => {
     mouse.x = null;
     mouse.y = null;
+  });
+
+  // Pausar animación cuando la pestaña no está visible (ahorra CPU/batería)
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+    } else if (!rafId) {
+      animate();
+    }
   });
 
   resize();
