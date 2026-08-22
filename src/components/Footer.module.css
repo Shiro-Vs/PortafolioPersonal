@@ -1,0 +1,16 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 64rem;
+  margin: 0 auto;
+  padding: var(--space-md);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+.footer a {
+  color: var(--color-primary-dark);
+  font-weight: 600;
+  text-decoration: none;
+}

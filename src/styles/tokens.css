@@ -1,0 +1,42 @@
+:root {
+  /* Color — paleta pastel Claymorphism */
+  --color-bg: #faf6f2;
+  --color-surface: #f3eee7;
+  --color-primary: #ffd166;
+  --color-primary-dark: #f2b53c;
+  --color-accent-lilac: #c9b6f5;
+  --color-accent-mint: #b7e4c7;
+  --color-text: #4a4458;
+  --color-text-muted: #7a7189;
+  --color-text-on-primary: #3a2e00;
+
+  /* Sombras "clay" — doble sombra + inset sutil */
+  --shadow-clay-raised:
+    8px 8px 16px rgba(163, 150, 193, 0.35),
+    -8px -8px 16px rgba(255, 255, 255, 0.8),
+    inset 1px 1px 2px rgba(255, 255, 255, 0.5);
+  --shadow-clay-pressed:
+    inset 6px 6px 12px rgba(163, 150, 193, 0.35),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.7);
+  --shadow-clay-soft: 6px 6px 14px rgba(163, 150, 193, 0.25), -6px -6px 14px rgba(255, 255, 255, 0.7);
+
+  /* Radios */
+  --radius-sm: 16px;
+  --radius-md: 24px;
+  --radius-lg: 40px;
+  --radius-full: 999px;
+
+  /* Tipografía */
+  --font-display: 'Fredoka', system-ui, sans-serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, sans-serif;
+
+  /* Espaciado */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  /* Transiciones */
+  --transition-clay: 180ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}

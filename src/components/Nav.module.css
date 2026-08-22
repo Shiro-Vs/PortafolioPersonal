@@ -1,0 +1,24 @@
+.nav {
+  position: fixed;
+  right: var(--space-md);
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  z-index: 50;
+}
+
+.dash {
+  width: 10px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-clay-soft);
+  transition: var(--transition-clay);
+}
+
+.dash.active {
+  background: var(--color-primary);
+  height: 40px;
+}

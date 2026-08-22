@@ -2,67 +2,47 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-Shiro--Vs-181717?style=flat&logo=github)](https://github.com/Shiro-Vs)
 
-Portafolio web responsive que muestra mis proyectos y habilidades como desarrollador.
+Portafolio web con animaciones, estilo Claymorphism y una mascota interactiva. Migrado de HTML/CSS/JS a React + Vite.
 
-## 🚀 Tecnologías de este proyecto
+## 🚀 Tecnologías
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![GSAP](https://img.shields.io/badge/GSAP-88CE02?style=for-the-badge&logo=greensock&logoColor=black)
+
+- **React 19 + Vite** — SPA compilada a estático, desplegada en GitHub Pages.
+- **GSAP + ScrollTrigger** para scroll storytelling y timelines.
+- **Framer Motion** para micro-interacciones y física de resorte.
+- **Claymorphism** como sistema de diseño (sombras dobles, bordes suaves, paleta pastel).
 
 ## 📁 Estructura
 
 ```
-PortafolioPersonal/
-├── index.html          # Página principal
-├── styles.css          # Estilos y responsive
-├── script.js           # Interactividad
-├── Iconos/            # Iconos y SVG
-└── Imagenes/          # Recursos visuales
+src/
+├── assets/         # íconos e imágenes
+├── components/     # componentes reutilizables (ui/, pikachu/)
+├── sections/       # Hero, Skills, Projects, Contact
+├── hooks/          # hooks de animación (GSAP, cursor, reduced motion)
+├── data/           # projects.js, skills.js
+└── styles/         # tokens.css (sistema de diseño), global.css
+legacy/             # versión estática original, conservada como referencia
 ```
 
-## 🎯 Características
-
-- **Responsive**: Adaptado a móviles, tablets y escritorio
-- **Animaciones**: Efecto de escritura, flip card 3D, fondo animado
-- **Secciones**: Sobre mí, habilidades, proyectos, contacto
-- **Accesible**: ARIA labels, navegación por teclado
-- **Optimizado**: CSS con variables, código limpio
-
-## 💻 Instalación
+## 💻 Desarrollo
 
 ```bash
-# Clonar repositorio
-git clone https://github.com/Shiro-Vs/PortafolioPersonal.git
-
-# Abrir index.html en tu navegador
-# O usar un servidor local
-python -m http.server 8000
+npm install
+npm run dev
 ```
 
-## 📝 Personalización
+## 🚢 Deploy
 
-### Cambiar colores
-
-Edita las variables en `styles.css`:
-
-```css
-:root {
-  --azul-oscuro: #1e2333;
-  --azul-claro: #8597d8;
-  /* ... */
-}
-```
-
-### Agregar proyecto
-
-Copia una tarjeta existente en la sección `#proyectos` de `index.html` y modifica el contenido.
+Se despliega automáticamente a GitHub Pages vía GitHub Actions (`.github/workflows/deploy.yml`) en cada push a `main`. El dominio propio (`shirovs.online`) se preserva mediante `public/CNAME`.
 
 ## 📞 Contacto
 
 **Robert Vasquez Sanchez** - [@Shiro-Vs](https://github.com/Shiro-Vs)
 
-- 📧 [robert.vs@outlook.com](mailto:robert.vs@outlook.com)
 - 💼 [LinkedIn](https://www.linkedin.com/in/shirovs)
 - 🐙 [GitHub](https://github.com/Shiro-Vs)
 

@@ -1,0 +1,43 @@
+.section {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: var(--space-xl) var(--space-md);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.field input,
+.field textarea {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-clay-pressed);
+  color: var(--color-text);
+  resize: vertical;
+}
+
+.field input:focus,
+.field textarea:focus {
+  outline: 2px solid var(--color-primary);
+}
+
+.status {
+  min-height: 1.5em;
+  color: var(--color-primary-dark);
+  font-weight: 600;
+}

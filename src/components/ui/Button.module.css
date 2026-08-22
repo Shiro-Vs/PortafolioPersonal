@@ -1,0 +1,26 @@
+.button {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 0.85rem 1.75rem;
+  cursor: pointer;
+  transition: var(--transition-clay);
+  box-shadow: var(--shadow-clay-raised);
+}
+
+.button:active {
+  box-shadow: var(--shadow-clay-pressed);
+  transform: translateY(1px);
+}
+
+.primary {
+  background: var(--color-primary);
+  color: var(--color-text-on-primary);
+}
+
+.secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+}
