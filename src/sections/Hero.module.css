@@ -35,6 +35,32 @@
   flex-wrap: wrap;
 }
 
-.mascotSlot {
+.photoSlot {
+  position: relative;
   display: flex;
+}
+
+.photoCard {
+  width: 280px;
+  height: 280px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-clay-raised);
+  padding: 0.75rem;
+  overflow: hidden;
+}
+
+.photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  border-radius: calc(var(--radius-lg) - 0.75rem);
+}
+
+.pikachuBadge {
+  position: absolute;
+  bottom: -18px;
+  right: -18px;
+  filter: drop-shadow(0 6px 10px rgba(163, 150, 193, 0.4));
 }

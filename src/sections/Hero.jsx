@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import Pikachu from '../components/pikachu/Pikachu';
 import { useReducedMotion } from '../hooks/useReducedMotion';
+import fotoUrl from '../assets/images/foto.webp';
 import styles from './Hero.module.css';
 
 const container = {
@@ -46,24 +47,17 @@ export default function Hero() {
       </motion.div>
 
       <motion.div
-        className={styles.mascotSlot}
-        initial={{ opacity: 0, scale: 0.85 }}
-        animate={
-          reduced
-            ? { opacity: 1, scale: 1 }
-            : { opacity: 1, scale: 1, y: [0, -14, 0] }
-        }
-        transition={
-          reduced
-            ? { duration: 0.6, ease: 'easeOut' }
-            : {
-                opacity: { duration: 0.6, ease: 'easeOut' },
-                scale: { duration: 0.6, ease: 'easeOut' },
-                y: { duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 0.6 },
-              }
-        }
+        className={styles.photoSlot}
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <Pikachu size="lg" idleBlink followCursor reactToScroll />
+        <div className={styles.photoCard}>
+          <img src={fotoUrl} alt="Robert Vasquez Sanchez" className={styles.photo} />
+        </div>
+        <div className={styles.pikachuBadge}>
+          <Pikachu size="sm" idleBlink followCursor reactToScroll />
+        </div>
       </motion.div>
     </section>
   );
