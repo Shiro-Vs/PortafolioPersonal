@@ -57,19 +57,20 @@ a {
 
 html {
   background-color: #020111; /* Fallback oscuro */
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
-body {
-  height: 100%;
-  scrollbar-width: none;
-  background-color: transparent;
-  /* isolation removed */
-}
 html::-webkit-scrollbar {
   display: none;
 }
 
 body {
+  min-height: 100%;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  scrollbar-width: none;
   font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial,
     sans-serif;
   color: var(--casi-blanco);
@@ -733,6 +734,11 @@ footer p {
 
 /* Preferencias de Movimiento Reducido */
 @media (prefers-reduced-motion: reduce) {
+  .oculto {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
   .etiqueta,
   #contacto .boton,
   .redes a:hover svg,

@@ -134,6 +134,61 @@ document.addEventListener("DOMContentLoaded", () => {
     return () => {}; // cleanup automático de ScrollTrigger al salir del breakpoint
   });
 
+  // --- Móvil / Tablet (< 768px): fade-in y slide suaves (sin 3D pesado) ---
+  mm.add("(max-width: 767px)", () => {
+    // LENGUAJES: entrada limpia hacia arriba
+    const categorias = gsap.utils.toArray(".lista-herramientas .categoria");
+    if (categorias.length) {
+      gsap.set(categorias, { opacity: 0, y: 30 });
+
+      ScrollTrigger.batch(categorias, {
+        start: "top 92%",
+        onEnter: (batch) =>
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.12,
+            ease: "power2.out",
+          }),
+        onEnterBack: (batch) =>
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          }),
+      });
+    }
+
+    // PROYECTOS: entrada limpia hacia arriba
+    const proyectos = gsap.utils.toArray(".proyectos-card .proyecto");
+    if (proyectos.length) {
+      gsap.set(proyectos, { opacity: 0, y: 35 });
+
+      ScrollTrigger.batch(proyectos, {
+        start: "top 92%",
+        onEnter: (batch) =>
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.6,
+            stagger: 0.15,
+            ease: "power2.out",
+          }),
+        onEnterBack: (batch) =>
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.4,
+            ease: "power2.out",
+          }),
+      });
+    }
+
+    return () => {};
+  });
+
   // --- CONTACTO: entrada lateral (funciona en cualquier ancho) ---
   gsap.set("#contacto .colum-derecha", { opacity: 0, x: -60 });
   gsap.set("#contacto form", { opacity: 0, x: 60 });
