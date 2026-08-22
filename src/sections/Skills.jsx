@@ -1,6 +1,7 @@
 import { skillCategories } from '../data/skills';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
+import TechIcon from '../components/ui/TechIcon';
 import styles from './Skills.module.css';
 
 export default function Skills() {
@@ -11,9 +12,9 @@ export default function Skills() {
         <div key={category} className={styles.category}>
           <h3 className={styles.categoryTitle}>{category}</h3>
           <div className={styles.grid}>
-            {items.map(({ name }) => (
+            {items.map(({ name, icon }) => (
               <Card key={name} className={styles.item}>
-                {/* TODO Fase 6: reemplazar por <TechIcon name={name} /> */}
+                <TechIcon icon={icon} size={28} />
                 <span>{name}</span>
               </Card>
             ))}
