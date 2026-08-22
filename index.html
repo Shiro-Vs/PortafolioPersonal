@@ -37,11 +37,20 @@
 
   <body>
     <canvas id="fondo-interactivo"></canvas>
+    <div id="fondo-tinte" aria-hidden="true"></div>
+    <div id="cursor-punto" aria-hidden="true"></div>
+    <div id="cursor-anillo" aria-hidden="true"></div>
+    <nav id="mini-nav" aria-label="Navegación de secciones">
+      <button class="mini-nav-dash" data-target="#sobreMi" aria-label="Ir a Sobre mí"></button>
+      <button class="mini-nav-dash" data-target="#lenguajes" aria-label="Ir a Lenguajes y herramientas"></button>
+      <button class="mini-nav-dash" data-target="#proyectos" aria-label="Ir a Proyectos"></button>
+      <button class="mini-nav-dash" data-target="#contacto" aria-label="Ir a Contacto"></button>
+    </nav>
     <!-- -----------------Sobre Mi------------------ -->
     <section id="sobreMi">
       <div class="sobre-grid">
         <!-- Columna izquierda: texto, tags y redes -->
-        <div class="contenedor intro left">
+        <div class="contenedor intro left spotlight">
           <h1 class="titulo">
             Hola, soy <span class="acento">ROBERT Vasquez Sanchez</span>
           </h1>
@@ -788,7 +797,7 @@
 
         <div class="proyectos-card">
           <!-- NutriCraft -->
-          <article class="proyecto tarjeta oculto">
+          <article class="proyecto tarjeta oculto spotlight">
             <div
               class="miniatura"
               role="img"
@@ -868,7 +877,7 @@
           </article>
 
           <!-- Biblioteca Swing -->
-          <article class="proyecto tarjeta oculto">
+          <article class="proyecto tarjeta oculto spotlight">
             <div
               class="miniatura"
               role="img"
@@ -957,7 +966,7 @@
           </article>
 
           <!-- CRUD React + Java -->
-          <article class="proyecto tarjeta oculto">
+          <article class="proyecto tarjeta oculto spotlight">
             <div
               class="miniatura"
               role="img"
@@ -1168,7 +1177,7 @@
           </div>
 
           <!-- Form sin backend: JS simula envío -->
-          <form class="tarjeta oculto" onsubmit="enviarMensaje(event)">
+          <form class="tarjeta oculto spotlight" onsubmit="enviarMensaje(event)">
             <label for="nombre" class="sr-only">Nombre</label>
             <input
               id="nombre"
@@ -1223,6 +1232,10 @@
     <!-- (Opcional) Simulación de envío -->
     <!-- Anime.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <!-- GSAP + ScrollTrigger (animaciones de scroll y 3D) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <script src="./script.js"></script>
+    <script src="./animations-gsap.js"></script>
   </body>
 </html>

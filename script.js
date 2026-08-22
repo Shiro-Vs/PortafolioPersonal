@@ -151,60 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
     animateSimple(titulo, baseIn, baseOut);
   });
 
-  // Animar Formulario y Texto de Contacto
-  const contactoAnimar = document.querySelectorAll(
-    "#contacto .colum-derecha, #contacto form"
-  );
-  contactoAnimar.forEach((el, index) => {
-    el.style.opacity = 0;
-    animateSimple(
-      el,
-      {
-        ...baseIn,
-        duration: 1000,
-        delay: index * 200,
-        easing: "easeOutExpo",
-      },
-      baseOut
-    );
-  });
-
-  // -- 3.2.2: Animaciones STAGGER (Cascada) para Grids --
-  // Función para manejar contenedores con hijos
-  const observeContainer = (containerSelector, childrenSelector) => {
-    const container = document.querySelector(containerSelector);
-    if (!container) return;
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Entra: Ejecutar Stagger
-            anime({
-              targets: childrenSelector,
-              translateY: [50, 0],
-              opacity: [0, 1],
-              delay: anime.stagger(100),
-              easing: "easeOutQuint",
-              duration: 800,
-            });
-          } else {
-            // Sale: Resetear Hijos
-            anime.set(childrenSelector, {
-              opacity: 0,
-              translateY: 50,
-            });
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-    observer.observe(container);
-  };
-
-  // Observar Contenedores
-  observeContainer(".lista-herramientas", ".lista-herramientas .categoria");
-  observeContainer(".proyectos-card", ".proyectos-card .proyecto");
+  // Nota: el reveal de #contacto, de ".lista-herramientas .categoria" y de
+  // ".proyectos-card .proyecto" ahora lo maneja animations-gsap.js (efectos
+  // 3D ligados al scroll). Se retiraron de aquí para no animar el mismo
+  // elemento con dos motores a la vez.
 
   // Interacciones Avanzadas
 
@@ -235,6 +185,15 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
+
+  // --- Spotlight (brillo que sigue al cursor en tarjetas) ---
+  document.querySelectorAll(".spotlight").forEach((card) => {
+    card.addEventListener("mousemove", (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty("--spot-x", `${e.clientX - rect.left}px`);
+      card.style.setProperty("--spot-y", `${e.clientY - rect.top}px`);
+    });
+  });
 
   // --- Carrusel Infinito (Marquee) ---
   const logosContainers = document.querySelectorAll('.logos');
