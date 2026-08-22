@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
+import Pikachu from '../components/pikachu/Pikachu';
 import { useReducedMotion } from '../hooks/useReducedMotion';
 import styles from './Hero.module.css';
 
@@ -44,10 +45,8 @@ export default function Hero() {
         </motion.div>
       </motion.div>
 
-      {/* TODO Fase 5: reemplazar por <Pikachu size="lg" idleBlink followCursor reactToScroll /> */}
       <motion.div
-        className={styles.mascotPlaceholder}
-        aria-hidden="true"
+        className={styles.mascotSlot}
         initial={{ opacity: 0, scale: 0.85 }}
         animate={
           reduced
@@ -63,7 +62,9 @@ export default function Hero() {
                 y: { duration: 3.2, repeat: Infinity, ease: 'easeInOut', delay: 0.6 },
               }
         }
-      />
+      >
+        <Pikachu size="lg" idleBlink followCursor reactToScroll />
+      </motion.div>
     </section>
   );
 }

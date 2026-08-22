@@ -35,10 +35,6 @@
   flex-wrap: wrap;
 }
 
-.mascotPlaceholder {
-  width: 260px;
-  height: 260px;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(160deg, var(--color-primary) 0%, var(--color-accent-lilac) 100%);
-  box-shadow: var(--shadow-clay-raised);
+.mascotSlot {
+  display: flex;
 }
