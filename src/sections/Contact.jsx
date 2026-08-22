@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
 import styles from './Contact.module.css';
@@ -19,7 +20,15 @@ export default function Contact() {
   return (
     <section id="contacto" className={styles.section}>
       <SectionTitle eyebrow="Hablemos">Contacto</SectionTitle>
-      <form ref={formRef} className={styles.form} onSubmit={handleSubmit}>
+      <motion.form
+        ref={formRef}
+        className={styles.form}
+        onSubmit={handleSubmit}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.4 }}
+        transition={{ duration: 0.5, ease: 'easeOut' }}
+      >
         <label className={styles.field}>
           Nombre
           <input type="text" name="nombre" required />
@@ -38,7 +47,7 @@ export default function Contact() {
         <p className={styles.status} role="status" aria-live="polite">
           {status}
         </p>
-      </form>
+      </motion.form>
     </section>
   );
 }
