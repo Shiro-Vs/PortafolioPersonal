@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
@@ -6,6 +6,7 @@ import Footer from '../components/Footer';
 import MailIcon from '../assets/icons/social/mail.svg?react';
 import LinkedInIcon from '../assets/icons/social/linkedin.svg?react';
 import WhatsAppIcon from '../assets/icons/social/whatsapp.svg?react';
+import avatarPensando from '../assets/images/contact/avatar-pensando.webp';
 import styles from './Contact.module.css';
 
 const CONTACT_LINKS = [
@@ -28,9 +29,18 @@ const CONTACT_LINKS = [
 
 export default function Contact() {
   const [status, setStatus] = useState('');
+  const [formHeight, setFormHeight] = useState(null);
   const formRef = useRef(null);
   const messageRef = useRef(null);
   const timeoutRef = useRef(null);
+
+  useEffect(() => {
+    const el = formRef.current;
+    if (!el || typeof ResizeObserver === 'undefined') return undefined;
+    const observer = new ResizeObserver(([entry]) => setFormHeight(entry.contentRect.height));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -53,18 +63,32 @@ export default function Contact() {
         <SectionTitle eyebrow="Hablemos">Contacto</SectionTitle>
 
         <div className={styles.layout}>
-          <ul className={styles.contactLinks}>
-            {CONTACT_LINKS.map(({ label, href, icon: Icon }) => (
-              <li key={href}>
-                <a href={href} target="_blank" rel="noreferrer" className={styles.contactLink}>
-                  <span className={styles.contactIcon} aria-hidden="true">
-                    <Icon width={20} height={20} />
-                  </span>
-                  {label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div
+            className={styles.contactColumn}
+            style={formHeight ? { maxHeight: `${formHeight}px` } : undefined}
+          >
+            <ul className={styles.contactLinks}>
+              {CONTACT_LINKS.map(({ label, href, icon: Icon }) => (
+                <li key={href}>
+                  <a href={href} target="_blank" rel="noreferrer" className={styles.contactLink}>
+                    <span className={styles.contactIcon} aria-hidden="true">
+                      <Icon width={20} height={20} />
+                    </span>
+                    {label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+
+            <img
+              src={avatarPensando}
+              alt=""
+              aria-hidden="true"
+              width={700}
+              height={1296}
+              className={styles.thinkingAvatar}
+            />
+          </div>
 
           <motion.form
             ref={formRef}

@@ -1,15 +1,18 @@
 .hero {
   min-height: 100svh;
+  max-width: 100rem;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--space-xl);
+  gap: 0.75rem;
   padding: var(--space-xl) var(--space-md);
   flex-wrap: wrap;
 }
 
 .content {
-  max-width: 32rem;
+  width: min(100%, 36rem);
+  text-align: left;
 }
 
 .eyebrow {
@@ -61,13 +64,13 @@
 .photoSlot::before {
   content: '';
   position: absolute;
-  inset: -8%;
+  inset: 4%;
   border-radius: 50%;
   background: radial-gradient(
     circle,
     rgba(111, 155, 181, 0.35) 0%,
-    rgba(111, 155, 181, 0.16) 45%,
-    rgba(111, 155, 181, 0) 75%
+    rgba(111, 155, 181, 0.16) 40%,
+    rgba(111, 155, 181, 0) 65%
   );
   filter: blur(4px);
   z-index: -1;
@@ -75,7 +78,7 @@
 
 .photo {
   position: relative;
-  width: clamp(320px, 40vw, 620px);
+  width: clamp(340px, 42vw, 680px);
   height: auto;
   object-fit: contain;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));

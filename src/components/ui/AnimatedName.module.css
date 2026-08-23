@@ -1,0 +1,15 @@
+.wrapper {
+  display: inline-block;
+  perspective: 700px;
+}
+
+.line {
+  display: block;
+}
+
+.char {
+  display: inline-block;
+  white-space: pre;
+  transform-origin: bottom center;
+  will-change: transform, opacity;
+}

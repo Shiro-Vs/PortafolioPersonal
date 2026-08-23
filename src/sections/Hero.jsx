@@ -1,9 +1,11 @@
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import Typewriter from '../components/ui/Typewriter';
+import AnimatedName from '../components/ui/AnimatedName';
 import styles from './Hero.module.css';
 
 const TYPEWRITER_WORDS = ['Minimalismo', 'Rendimiento', 'UI/UX'];
+const NAME_LINES = ['Robert Vasquez', 'Sanchez'];
 
 const container = {
   hidden: {},
@@ -28,7 +30,7 @@ export default function Hero() {
           Hola, soy
         </motion.span>
         <motion.h1 variants={item} className={styles.title}>
-          Robert Vasquez Sanchez
+          <AnimatedName lines={NAME_LINES} />
         </motion.h1>
         <motion.span variants={item} className={styles.role}>
           Full Stack Developer · Java/Spring Boot & React
