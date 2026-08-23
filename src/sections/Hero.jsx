@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
+import Typewriter from '../components/ui/Typewriter';
 import styles from './Hero.module.css';
+
+const TYPEWRITER_WORDS = ['Minimalismo', 'Rendimiento', 'UI/UX'];
 
 const container = {
   hidden: {},
@@ -31,10 +34,12 @@ export default function Hero() {
           Full Stack Developer · Java/Spring Boot & React
         </motion.span>
         <motion.p variants={item} className={styles.subtitle}>
-          Estudiante de noveno ciclo de Ingeniería de Software en la UTP. Desarrollé el backend
-          de dos sistemas académicos con más de 30 endpoints REST cada uno, incluyendo
-          autenticación JWT y control de acceso por roles. Cofundador y líder técnico de VEXA,
-          donde dirijo el desarrollo de un ERP para pequeños negocios.
+          Me gusta transformar ideas en soluciones simples y funcionales. Disfruto aprender por mi
+          cuenta, resolver problemas y cuidar los detalles para que lo que construyo se sienta útil
+          y agradable de usar.
+        </motion.p>
+        <motion.p variants={item} className={styles.tagline}>
+          <Typewriter words={TYPEWRITER_WORDS} />
         </motion.p>
         <motion.div variants={item} className={styles.actions}>
           <Button as="a" href="#proyectos" variant="primary">

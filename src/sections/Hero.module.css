@@ -18,7 +18,9 @@
 }
 
 .title {
-  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-size: clamp(2.75rem, 7.5vw, 4.5rem);
+  font-weight: 600;
+  line-height: 1.1;
   margin-top: var(--space-xs);
 }
 
@@ -34,6 +36,12 @@
   color: var(--color-text-muted);
   font-size: 1.1rem;
   line-height: 1.6;
+}
+
+.tagline {
+  margin-top: var(--space-sm);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  color: var(--color-text-muted);
 }
 
 .actions {
