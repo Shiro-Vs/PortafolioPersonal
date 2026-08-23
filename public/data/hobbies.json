@@ -1,0 +1,16 @@
+{
+  "spotify": {
+    "isPlaying": false,
+    "track": {
+      "title": "Configura Spotify para ver esto en vivo",
+      "artist": "—",
+      "albumArt": null,
+      "url": null
+    }
+  },
+  "steam": {
+    "status": "unknown",
+    "game": null
+  },
+  "fetchedAt": null
+}

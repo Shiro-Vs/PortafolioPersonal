@@ -5,6 +5,8 @@ import Nav from './components/Nav';
 import Hero from './sections/Hero';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
+import Experience from './sections/Experience';
+import Hobbies from './sections/Hobbies';
 import Contact from './sections/Contact';
 import { useSpaceEntrance } from './hooks/useSpaceEntrance';
 
@@ -30,6 +32,8 @@ export default function App() {
         <Hero />
         <Skills />
         <Projects />
+        <Experience />
+        <Hobbies />
         <Contact />
       </main>
     </>
