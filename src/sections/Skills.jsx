@@ -4,6 +4,8 @@ import { useGsapScrollTrigger } from '../hooks/useGsapScrollTrigger';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 import TechIcon from '../components/ui/TechIcon';
+import avatarSentado from '../assets/images/skills/avatar-sentado.webp';
+import avatarHerramientas from '../assets/images/skills/avatar-herramientas.webp';
 import styles from './Skills.module.css';
 
 const [lenguajes, herramientas] = skillCategories;
@@ -78,11 +80,12 @@ export default function Skills() {
         </div>
         <div className={styles.illustrationWrap}>
           <img
-            src="/avatar-sentado.png"
+            src={avatarSentado}
             alt=""
             aria-hidden="true"
             width={2052}
             height={2048}
+            loading="lazy"
             className={styles.illustration}
           />
         </div>
@@ -91,11 +94,12 @@ export default function Skills() {
       <div className={styles.toolsRow}>
         <div className={styles.illustrationWrap}>
           <img
-            src="/avatar-herramientas.png"
+            src={avatarHerramientas}
             alt=""
             aria-hidden="true"
             width={2052}
             height={2048}
+            loading="lazy"
             className={styles.toolsIllustration}
           />
         </div>

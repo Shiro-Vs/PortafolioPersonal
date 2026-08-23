@@ -98,6 +98,11 @@
 }
 
 @media (max-width: 860px) {
+  .section {
+    min-height: auto;
+    justify-content: flex-start;
+  }
+
   .layout,
   .toolsRow {
     flex-direction: column;

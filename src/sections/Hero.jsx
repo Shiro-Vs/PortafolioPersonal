@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import Typewriter from '../components/ui/Typewriter';
 import AnimatedName from '../components/ui/AnimatedName';
+import avatarPhoto from '../assets/images/hero/avatar.webp';
 import styles from './Hero.module.css';
 
 const TYPEWRITER_WORDS = ['Minimalismo', 'Rendimiento', 'UI/UX'];
@@ -59,7 +60,7 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <img src="/Avatar.png" alt="Robert Vasquez Sanchez" className={styles.photo} />
+        <img src={avatarPhoto} alt="Robert Vasquez Sanchez" className={styles.photo} />
       </motion.div>
     </section>
   );

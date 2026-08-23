@@ -86,6 +86,7 @@ export default function Contact() {
               aria-hidden="true"
               width={700}
               height={1296}
+              loading="lazy"
               className={styles.thinkingAvatar}
             />
           </div>
