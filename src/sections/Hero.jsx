@@ -1,8 +1,5 @@
 import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
-import Pikachu from '../components/pikachu/Pikachu';
-import { useReducedMotion } from '../hooks/useReducedMotion';
-import fotoUrl from '../assets/images/foto.webp';
 import styles from './Hero.module.css';
 
 const container = {
@@ -16,8 +13,6 @@ const item = {
 };
 
 export default function Hero() {
-  const reduced = useReducedMotion();
-
   return (
     <section id="sobreMi" className={styles.hero}>
       <motion.div
@@ -32,9 +27,14 @@ export default function Hero() {
         <motion.h1 variants={item} className={styles.title}>
           Robert Vasquez Sanchez
         </motion.h1>
+        <motion.span variants={item} className={styles.role}>
+          Full Stack Developer · Java/Spring Boot & React
+        </motion.span>
         <motion.p variants={item} className={styles.subtitle}>
-          Estudiante de ingeniería de software y desarrollador web. Construyo interfaces con
-          React, Java y Python.
+          Estudiante de noveno ciclo de Ingeniería de Software en la UTP. Desarrollé el backend
+          de dos sistemas académicos con más de 30 endpoints REST cada uno, incluyendo
+          autenticación JWT y control de acceso por roles. Cofundador y líder técnico de VEXA,
+          donde dirijo el desarrollo de un ERP para pequeños negocios.
         </motion.p>
         <motion.div variants={item} className={styles.actions}>
           <Button as="a" href="#proyectos" variant="primary">
@@ -52,12 +52,7 @@ export default function Hero() {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: 'easeOut' }}
       >
-        <div className={styles.photoCard}>
-          <img src={fotoUrl} alt="Robert Vasquez Sanchez" className={styles.photo} />
-        </div>
-        <div className={styles.pikachuBadge}>
-          <Pikachu size="sm" idleBlink followCursor reactToScroll />
-        </div>
+        <img src="/Avatar.png" alt="Robert Vasquez Sanchez" className={styles.photo} />
       </motion.div>
     </section>
   );

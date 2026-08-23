@@ -1,24 +1,21 @@
 :root {
-  /* Color — paleta pastel Claymorphism */
-  --color-bg: #faf6f2;
-  --color-surface: #f3eee7;
-  --color-primary: #ffd166;
-  --color-primary-dark: #f2b53c;
-  --color-accent-lilac: #c9b6f5;
-  --color-accent-mint: #b7e4c7;
-  --color-text: #4a4458;
-  --color-text-muted: #7a7189;
-  --color-text-on-primary: #3a2e00;
+  /* Color — paleta Claymorphism oscura, azul marino + acero */
+  --color-bg: #161d29;
+  --color-surface: #202a3a;
+  --color-primary: #6f9bb5;
+  /* Variante clara del primario: se usa como texto/acento sobre el fondo oscuro,
+     no como "versión oscura" — el nombre se mantiene para no romper referencias. */
+  --color-primary-dark: #9ec4d8;
+  --color-accent-lilac: #b2653f;
+  --color-accent-mint: #4f7a5c;
+  --color-text: #eceef0;
+  --color-text-muted: #9aa1a8;
+  --color-text-on-primary: #14181b;
 
-  /* Sombras "clay" — doble sombra + inset sutil */
-  --shadow-clay-raised:
-    8px 8px 16px rgba(163, 150, 193, 0.35),
-    -8px -8px 16px rgba(255, 255, 255, 0.8),
-    inset 1px 1px 2px rgba(255, 255, 255, 0.5);
-  --shadow-clay-pressed:
-    inset 6px 6px 12px rgba(163, 150, 193, 0.35),
-    inset -6px -6px 12px rgba(255, 255, 255, 0.7);
-  --shadow-clay-soft: 6px 6px 14px rgba(163, 150, 193, 0.25), -6px -6px 14px rgba(255, 255, 255, 0.7);
+  /* Sombras "clay" — sombra simple hacia abajo + inset sutil, ajustadas a fondo oscuro */
+  --shadow-clay-raised: 0 6px 14px rgba(0, 0, 0, 0.4), inset 1px 1px 2px rgba(255, 255, 255, 0.06);
+  --shadow-clay-pressed: inset 0 3px 8px rgba(0, 0, 0, 0.45);
+  --shadow-clay-soft: 0 4px 10px rgba(0, 0, 0, 0.3);
 
   /* Radios */
   --radius-sm: 16px;

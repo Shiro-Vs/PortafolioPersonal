@@ -1,0 +1,78 @@
+.ambient {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.stars {
+  position: absolute;
+  inset: -20%;
+  background-repeat: repeat;
+  will-change: transform;
+}
+
+.starsFar {
+  background-image:
+    radial-gradient(1px 1px at 10% 20%, var(--color-text-muted), transparent),
+    radial-gradient(1px 1px at 35% 65%, var(--color-text-muted), transparent),
+    radial-gradient(1px 1px at 60% 15%, var(--color-text-muted), transparent),
+    radial-gradient(1px 1px at 80% 50%, var(--color-text-muted), transparent),
+    radial-gradient(1px 1px at 25% 85%, var(--color-text-muted), transparent),
+    radial-gradient(1px 1px at 95% 75%, var(--color-text-muted), transparent);
+  background-size: 220px 220px;
+  opacity: 0.22;
+  animation: starDriftFar 140s ease-in-out infinite;
+}
+
+.starsMid {
+  background-image:
+    radial-gradient(1.5px 1.5px at 15% 30%, var(--color-accent-lilac), transparent),
+    radial-gradient(1.5px 1.5px at 50% 70%, var(--color-accent-lilac), transparent),
+    radial-gradient(1.5px 1.5px at 70% 20%, var(--color-accent-lilac), transparent),
+    radial-gradient(1.5px 1.5px at 90% 60%, var(--color-accent-lilac), transparent);
+  background-size: 320px 320px;
+  opacity: 0.3;
+  animation: starDriftMid 90s ease-in-out infinite;
+}
+
+.starsNear {
+  background-image:
+    radial-gradient(2px 2px at 20% 40%, var(--color-primary-dark), transparent),
+    radial-gradient(2px 2px at 65% 75%, var(--color-primary-dark), transparent),
+    radial-gradient(2px 2px at 85% 25%, var(--color-primary-dark), transparent);
+  background-size: 420px 420px;
+  opacity: 0.28;
+  animation: starDriftNear 55s ease-in-out infinite;
+}
+
+@keyframes starDriftFar {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-80px, 60px);
+  }
+}
+
+@keyframes starDriftMid {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(100px, -70px);
+  }
+}
+
+@keyframes starDriftNear {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(-130px, 100px);
+  }
+}

@@ -1,16 +1,43 @@
+.wrapper {
+  padding-top: var(--space-md);
+}
+
+.divider {
+  height: 1px;
+  max-width: 40rem;
+  margin: 0 auto var(--space-md);
+  background: linear-gradient(to right, transparent, var(--color-text-muted), transparent);
+  opacity: 0.35;
+}
+
 .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 64rem;
   margin: 0 auto;
-  padding: var(--space-md);
+  padding: 0 var(--space-md) var(--space-md);
   color: var(--color-text-muted);
   font-size: 0.9rem;
 }
 
-.footer a {
+.footer p {
+  margin: 0;
+}
+
+.social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.social a {
+  display: flex;
+  color: var(--color-text-muted);
+  transition: var(--transition-clay);
+}
+
+.social a:hover {
   color: var(--color-primary-dark);
-  font-weight: 600;
-  text-decoration: none;
+  transform: translateY(-2px);
 }

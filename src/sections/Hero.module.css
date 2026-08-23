@@ -22,6 +22,14 @@
   margin-top: var(--space-xs);
 }
 
+.role {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  margin-top: 0.25rem;
+  font-size: 1.05rem;
+}
+
 .subtitle {
   color: var(--color-text-muted);
   font-size: 1.1rem;
@@ -38,29 +46,29 @@
 .photoSlot {
   position: relative;
   display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.photoCard {
-  width: 280px;
-  height: 280px;
-  border-radius: var(--radius-lg);
-  background: var(--color-surface);
-  box-shadow: var(--shadow-clay-raised);
-  padding: 0.75rem;
-  overflow: hidden;
+.photoSlot::before {
+  content: '';
+  position: absolute;
+  inset: -8%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(111, 155, 181, 0.35) 0%,
+    rgba(111, 155, 181, 0.16) 45%,
+    rgba(111, 155, 181, 0) 75%
+  );
+  filter: blur(4px);
+  z-index: -1;
 }
 
 .photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
-  border-radius: calc(var(--radius-lg) - 0.75rem);
-}
-
-.pikachuBadge {
-  position: absolute;
-  bottom: -18px;
-  right: -18px;
-  filter: drop-shadow(0 6px 10px rgba(163, 150, 193, 0.4));
+  position: relative;
+  width: clamp(320px, 40vw, 620px);
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
 }

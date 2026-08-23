@@ -8,13 +8,15 @@ import styles from './Projects.module.css';
 export default function Projects() {
   const scope = useGsapScrollTrigger((scopeRef) => {
     const cards = gsap.utils.toArray(`.${styles.grid} > *`, scopeRef.current);
-    gsap.set(cards, { opacity: 0, y: 28 });
+    gsap.set(cards, { opacity: 0, y: 32, scale: 0.9, rotate: -1.5 });
     gsap.to(cards, {
       opacity: 1,
       y: 0,
-      duration: 0.55,
+      scale: 1,
+      rotate: 0,
+      duration: 0.6,
       stagger: 0.08,
-      ease: 'power2.out',
+      ease: 'back.out(1.6)',
       scrollTrigger: {
         trigger: scopeRef.current,
         start: 'top 75%',

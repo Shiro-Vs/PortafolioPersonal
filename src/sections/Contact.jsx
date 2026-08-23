@@ -2,52 +2,109 @@ import { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
+import Footer from '../components/Footer';
+import MailIcon from '../assets/icons/social/mail.svg?react';
+import LinkedInIcon from '../assets/icons/social/linkedin.svg?react';
+import WhatsAppIcon from '../assets/icons/social/whatsapp.svg?react';
 import styles from './Contact.module.css';
+
+const CONTACT_LINKS = [
+  {
+    label: 'robert.vs@outlook.com',
+    href: 'mailto:robert.vs@outlook.com',
+    icon: MailIcon,
+  },
+  {
+    label: 'linkedin.com/in/shirovs',
+    href: 'https://www.linkedin.com/in/shirovs',
+    icon: LinkedInIcon,
+  },
+  {
+    label: '+51 937 385 728',
+    href: 'https://wa.me/51937385728',
+    icon: WhatsAppIcon,
+  },
+];
 
 export default function Contact() {
   const [status, setStatus] = useState('');
   const formRef = useRef(null);
+  const messageRef = useRef(null);
   const timeoutRef = useRef(null);
 
   function handleSubmit(e) {
     e.preventDefault();
     setStatus('Gracias por tu mensaje. ¡Te responderé pronto!');
     formRef.current?.reset();
+    if (messageRef.current) messageRef.current.style.height = '';
     clearTimeout(timeoutRef.current);
     timeoutRef.current = setTimeout(() => setStatus(''), 5000);
   }
 
+  function handleMessageInput(e) {
+    const el = e.target;
+    el.style.height = 'auto';
+    el.style.height = `${el.scrollHeight}px`;
+  }
+
   return (
     <section id="contacto" className={styles.section}>
-      <SectionTitle eyebrow="Hablemos">Contacto</SectionTitle>
-      <motion.form
-        ref={formRef}
-        className={styles.form}
-        onSubmit={handleSubmit}
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.4 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-      >
-        <label className={styles.field}>
-          Nombre
-          <input type="text" name="nombre" required />
-        </label>
-        <label className={styles.field}>
-          Correo
-          <input type="email" name="correo" required />
-        </label>
-        <label className={styles.field}>
-          Mensaje
-          <textarea name="mensaje" rows={5} required />
-        </label>
-        <Button type="submit" variant="primary">
-          Enviar mensaje
-        </Button>
-        <p className={styles.status} role="status" aria-live="polite">
-          {status}
-        </p>
-      </motion.form>
+      <div className={styles.inner}>
+        <SectionTitle eyebrow="Hablemos">Contacto</SectionTitle>
+
+        <div className={styles.layout}>
+          <ul className={styles.contactLinks}>
+            {CONTACT_LINKS.map(({ label, href, icon: Icon }) => (
+              <li key={href}>
+                <a href={href} target="_blank" rel="noreferrer" className={styles.contactLink}>
+                  <span className={styles.contactIcon} aria-hidden="true">
+                    <Icon width={20} height={20} />
+                  </span>
+                  {label}
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <motion.form
+            ref={formRef}
+            className={`${styles.form} ${styles.formCard}`}
+            onSubmit={handleSubmit}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            <h3 className={styles.formHeading}>¿Tienes un proyecto en mente?</h3>
+            <label className={styles.field}>
+              Nombre
+              <input type="text" name="nombre" required />
+            </label>
+            <label className={styles.field}>
+              Correo
+              <input type="email" name="correo" required />
+            </label>
+            <label className={styles.field}>
+              Mensaje
+              <textarea
+                ref={messageRef}
+                name="mensaje"
+                rows={4}
+                required
+                onInput={handleMessageInput}
+                className={styles.message}
+              />
+            </label>
+            <Button type="submit" variant="primary">
+              Enviar mensaje
+            </Button>
+            <p className={styles.status} role="status" aria-live="polite">
+              {status}
+            </p>
+          </motion.form>
+        </div>
+      </div>
+      <Footer />
     </section>
   );
 }

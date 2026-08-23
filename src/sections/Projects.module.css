@@ -1,11 +1,15 @@
 .section {
-  max-width: 64rem;
+  max-width: 88rem;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-md);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: var(--space-md);
 }

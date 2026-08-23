@@ -5,6 +5,12 @@
   margin-bottom: var(--space-lg);
 }
 
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
 .eyebrow {
   font-family: var(--font-body);
   font-weight: 600;
@@ -12,6 +18,15 @@
   text-transform: uppercase;
   font-size: 0.85rem;
   color: var(--color-primary-dark);
+}
+
+.accentBar {
+  display: block;
+  height: 3px;
+  width: 2.5rem;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+  transform-origin: left;
 }
 
 .title {

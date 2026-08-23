@@ -9,6 +9,14 @@
   z-index: 50;
 }
 
+.dashLink {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-decoration: none;
+}
+
 .dash {
   width: 10px;
   height: 28px;
@@ -21,4 +29,31 @@
 .dash.active {
   background: var(--color-primary);
   height: 40px;
+}
+
+.dashLink:hover .dash {
+  transform: scale(1.15);
+}
+
+.tooltip {
+  position: absolute;
+  right: calc(100% + 12px);
+  white-space: nowrap;
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-clay-soft);
+  opacity: 0;
+  transform: translateX(8px);
+  transition: var(--transition-clay);
+  pointer-events: none;
+}
+
+.dashLink:hover .tooltip {
+  opacity: 1;
+  transform: translateX(0);
 }
