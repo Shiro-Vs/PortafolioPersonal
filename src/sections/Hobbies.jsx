@@ -22,7 +22,7 @@ export default function Hobbies() {
 
   useEffect(() => {
     let cancelled = false;
-    fetch('/data/hobbies.json')
+    fetch('/data/hobbies.json', { cache: 'no-store' })
       .then((res) => (res.ok ? res.json() : null))
       .then((json) => {
         if (!cancelled) setData(json);
