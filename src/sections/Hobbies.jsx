@@ -4,6 +4,8 @@ import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 import styles from './Hobbies.module.css';
 
+const STEAM_PROFILE_URL = 'https://steamcommunity.com/profiles/76561199215601574/';
+
 const STEAM_STATUS_LABELS = {
   online: 'En línea',
   busy: 'Ocupado',
@@ -74,6 +76,9 @@ export default function Hobbies() {
             ) : (
               <p className={styles.trackTitle}>{STEAM_STATUS_LABELS[steam.status] ?? 'Sin datos'}</p>
             )}
+            <a href={STEAM_PROFILE_URL} target="_blank" rel="noreferrer" className={styles.link}>
+              Agrégame en Steam
+            </a>
           </Card>
         )}
       </div>
