@@ -84,3 +84,27 @@
   object-fit: contain;
   filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.55));
 }
+
+@media (max-width: 640px) {
+  .hero {
+    padding: var(--space-lg) var(--space-sm);
+    text-align: center;
+    justify-content: center;
+  }
+
+  .content {
+    text-align: center;
+  }
+
+  .actions {
+    justify-content: center;
+  }
+
+  .title {
+    font-size: clamp(2.25rem, 11vw, 3rem);
+  }
+
+  .photo {
+    width: min(80vw, 340px);
+  }
+}

@@ -27,10 +27,20 @@ export default function AnimatedName({ lines, className }) {
     );
   }
 
-  // Offset de cada línea en el índice global de letras, usado para escalonar
-  // el delay de la animación de forma continua a través de todas las líneas.
-  const lineOffsets = lines.map((_, i) =>
-    lines.slice(0, i).reduce((sum, line) => sum + line.length, 0),
+  // Letras agrupadas por palabra (no por línea completa) para que el
+  // navegador solo pueda saltar de línea entre palabras — cada palabra es
+  // un bloque indivisible, así una pantalla angosta nunca corta una letra
+  // a la mitad. El índice global de cada letra se precalcula sin mutar
+  // variables durante el render (evita reprocesar el mismo estado en cada
+  // pasada de React).
+  const lineWords = lines.map((line) => line.split(' '));
+  const lineWordCounts = lineWords.map((words) => words.length);
+  const lineWordStart = lineWordCounts.map((_, i) =>
+    lineWordCounts.slice(0, i).reduce((sum, c) => sum + c, 0),
+  );
+  const flatWords = lineWords.flat();
+  const wordCharOffset = flatWords.map((_, i) =>
+    flatWords.slice(0, i).reduce((sum, w) => sum + w.length, 0),
   );
 
   return (
@@ -40,18 +50,29 @@ export default function AnimatedName({ lines, className }) {
       whileInView="visible"
       viewport={{ once: false, amount: 0.6 }}
     >
-      {lines.map((line, li) => (
+      {lineWords.map((words, li) => (
         <span key={li} className={styles.line}>
-          {line.split('').map((char, ci) => (
-            <motion.span
-              key={`${li}-${ci}`}
-              custom={lineOffsets[li] + ci}
-              variants={letterVariants}
-              className={styles.char}
-            >
-              {char}
-            </motion.span>
-          ))}
+          {words.map((word, wi) => {
+            const flatIndex = lineWordStart[li] + wi;
+            const charOffset = wordCharOffset[flatIndex];
+            return (
+              <span key={wi}>
+                <span className={styles.word}>
+                  {word.split('').map((char, ci) => (
+                    <motion.span
+                      key={ci}
+                      custom={charOffset + ci}
+                      variants={letterVariants}
+                      className={styles.char}
+                    >
+                      {char}
+                    </motion.span>
+                  ))}
+                </span>
+                {wi < words.length - 1 ? ' ' : null}
+              </span>
+            );
+          })}
         </span>
       ))}
     </motion.span>

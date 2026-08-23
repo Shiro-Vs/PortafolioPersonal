@@ -7,6 +7,10 @@
   display: block;
 }
 
+.word {
+  display: inline-block;
+}
+
 .char {
   display: inline-block;
   white-space: pre;
