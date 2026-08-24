@@ -116,6 +116,8 @@
 .equalizer span {
   flex: 1 1 0;
   min-width: 2px;
+  height: 100%;
+  transform-origin: bottom;
   background: color-mix(in srgb, var(--color-accent-mint) 55%, #4ade80 45%);
   border-radius: 2px;
   animation-name: eqBar;
@@ -123,13 +125,16 @@
   animation-iteration-count: infinite;
 }
 
+/* Anima transform (compositor, sin reflow) en vez de height — con 24
+   barras animando a la vez, animar height fuerza un recálculo de layout
+   en cada frame mientras suena la música. */
 @keyframes eqBar {
   0%,
   100% {
-    height: 3px;
+    transform: scaleY(0.12);
   }
   50% {
-    height: 100%;
+    transform: scaleY(1);
   }
 }
 
@@ -197,7 +202,7 @@
 
   .equalizer span {
     animation: none;
-    height: 14px;
+    transform: scaleY(0.5);
   }
 }
 
