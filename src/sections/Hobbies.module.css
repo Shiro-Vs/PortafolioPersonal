@@ -2,10 +2,6 @@
   max-width: 68rem;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-md);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
 
 .grid {
@@ -202,13 +198,6 @@
   .equalizer span {
     animation: none;
     height: 14px;
-  }
-}
-
-@media (max-width: 860px) {
-  .section {
-    min-height: auto;
-    justify-content: flex-start;
   }
 }
 
