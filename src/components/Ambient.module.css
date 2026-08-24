@@ -76,3 +76,13 @@
     transform: translate(-130px, 100px);
   }
 }
+
+/* Tres capas fijas animadas todo el tiempo (no solo durante scroll) es
+   carga constante de composición — en celulares de gama media/baja se
+   nota sumada al resto. Se apaga la capa menos perceptible (la más
+   sutil, "far") en pantallas chicas. */
+@media (max-width: 767px) {
+  .starsFar {
+    display: none;
+  }
+}

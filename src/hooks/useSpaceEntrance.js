@@ -5,10 +5,9 @@ import { useReducedMotion } from './useReducedMotion';
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Simula acercarse a un "planeta": cada <section> entra con un zoom-in
-// marcado, como si el viaje espacial se detuviera ahí. Solo anima
-// transform/opacity (baratos para el navegador) — nada de filter/blur,
-// que fuerza repintados costosos en elementos tan grandes.
+// Simula acercarse a un "planeta": en escritorio cada <section> entra con
+// un zoom-in marcado, como si el viaje espacial se detuviera ahí. En móvil
+// se simplifica a solo fade (ver comentario más abajo) por rendimiento.
 export function useSpaceEntrance() {
   const reduced = useReducedMotion();
 
@@ -28,22 +27,27 @@ export function useSpaceEntrance() {
         (context) => {
           const { isMobile } = context.conditions;
           const sections = gsap.utils.toArray('main > section');
+
+          // El zoom (scale) obliga al navegador a promover cada sección —
+          // subárboles grandes y complejos — a su propia capa GPU mientras
+          // anima. En celulares de gama media/baja eso es notoriamente caro,
+          // sobre todo cuando varias secciones disparan casi a la vez al
+          // saltar rápido con el Nav. En móvil se deja solo el fade
+          // (opacity), mucho más barato de componer, y más corto.
+          const from = isMobile ? { opacity: 0 } : { scale: 0.82, opacity: 0.4 };
+          const to = isMobile
+            ? { opacity: 1, duration: 0.4, ease: 'power2.out' }
+            : { scale: 1, opacity: 1, duration: 0.8, ease: 'power3.out' };
+
           sections.forEach((section) => {
-            gsap.fromTo(
-              section,
-              { scale: 0.82, opacity: 0.4 },
-              {
-                scale: 1,
-                opacity: 1,
-                duration: 0.8,
-                ease: 'power3.out',
-                scrollTrigger: {
-                  trigger: section,
-                  start: isMobile ? 'top 85%' : 'top center',
-                  toggleActions: 'play reverse play reverse',
-                },
+            gsap.fromTo(section, from, {
+              ...to,
+              scrollTrigger: {
+                trigger: section,
+                start: isMobile ? 'top 85%' : 'top center',
+                toggleActions: 'play reverse play reverse',
               },
-            );
+            });
           });
         },
       );
