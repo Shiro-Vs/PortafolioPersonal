@@ -1,3 +1,9 @@
 export const spotifyFavorites = [{ id: 'lofi' }, { id: 'synthwave' }, { id: 'focus' }];
 
-export const steamFavorites = [{ id: 'game1' }, { id: 'game2' }, { id: 'game3' }];
+export const steamFavorites = [
+  { id: 'dota2' },
+  { id: 'minecraft' },
+  { id: 'roblox' },
+  { id: 'hollowknight' },
+  { id: 'left4dead' },
+];

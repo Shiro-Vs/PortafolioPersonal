@@ -93,7 +93,7 @@ export const en = {
     title: 'Hobbies',
     spotifyPlaying: 'Listening now',
     spotifyRecent: 'Last listened to',
-    spotifyListen: 'Listen on Spotify',
+    spotifyListen: 'Listen',
     spotifyOfflineLabel: 'My coding favorites',
     spotifyFavorites: {
       lofi: { title: 'Lo-fi beats for coding', artist: 'Personal playlist' },
@@ -115,9 +115,11 @@ export const en = {
     steamPlaying: 'Playing',
     steamOfflineLabel: 'Playing in my free time',
     steamFavorites: {
-      game1: 'Exploring something new',
-      game2: 'Hollow Knight',
-      game3: 'Stardew Valley',
+      dota2: 'Dota 2',
+      minecraft: 'Minecraft',
+      roblox: 'Roblox',
+      hollowknight: 'Hollow Knight',
+      left4dead: 'Left 4 Dead',
     },
     steamAdd: 'Add me on Steam',
   },

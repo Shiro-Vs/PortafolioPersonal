@@ -4,9 +4,20 @@ import { useLanguage } from '../i18n/LanguageContext';
 import { spotifyFavorites, steamFavorites } from '../data/hobbies';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
+import Button from '../components/ui/Button';
 import styles from './Hobbies.module.css';
 
 const STEAM_PROFILE_URL = 'https://steamcommunity.com/profiles/76561199215601574/';
+
+// Duración y delay de cada barrita del ecualizador — valores fijos (no
+// Math.random()) para que el patrón sea el mismo en cada render, pero con
+// variación suficiente para que no se vea como una sola ola uniforme.
+const EQUALIZER_BARS = [
+  [0.9, 0], [1.3, 0.1], [0.7, 0.05], [1.1, 0.25], [0.8, 0.15], [1.4, 0],
+  [0.6, 0.2], [1.2, 0.1], [0.9, 0.3], [1.5, 0.05], [0.7, 0.15], [1, 0],
+  [1.3, 0.2], [0.8, 0.1], [1.1, 0], [0.6, 0.25], [1.4, 0.15], [0.9, 0.05],
+  [1.2, 0.2], [0.7, 0], [1, 0.3], [1.3, 0.1], [0.8, 0.2], [1.1, 0.05],
+];
 
 function LiveBadge({ live, label }) {
   return (
@@ -15,6 +26,10 @@ function LiveBadge({ live, label }) {
       {label}
     </span>
   );
+}
+
+function hideOnError(e) {
+  e.currentTarget.style.display = 'none';
 }
 
 export default function Hobbies() {
@@ -27,8 +42,8 @@ export default function Hobbies() {
     async function load() {
       // /api/hobbies (función serverless de Vercel) da datos en vivo por
       // request. Si no está disponible — dev local sin `vercel dev`,
-      // despliegue estático en GitHub Pages — se cae al JSON generado por
-      // el cron de CI, que ya trae su propio manejo de estado offline.
+      // despliegue estático — se cae al JSON generado por el cron de CI,
+      // que ya trae su propio manejo de estado offline.
       try {
         const liveRes = await fetch('/api/hobbies');
         if (liveRes.ok) {
@@ -87,26 +102,22 @@ export default function Hobbies() {
               <>
                 <div className={styles.trackRow}>
                   {spotify.track.albumArt && (
-                    <div className={styles.albumArtWrap}>
-                      <img src={spotify.track.albumArt} alt="" className={styles.albumArt} />
-                      {spotifyIsLive && (
-                        <span className={styles.equalizer} aria-hidden="true">
-                          <span />
-                          <span />
-                          <span />
-                        </span>
-                      )}
-                    </div>
+                    <img src={spotify.track.albumArt} alt="" className={styles.albumArt} />
                   )}
                   <div className={styles.trackInfo}>
                     <p className={styles.trackTitle}>{spotify.track.title}</p>
                     <p className={styles.trackArtist}>{spotify.track.artist}</p>
                   </div>
                 </div>
-                {spotify.track.url && (
-                  <a href={spotify.track.url} target="_blank" rel="noreferrer" className={styles.link}>
-                    {t('hobbies.spotifyListen')}
-                  </a>
+                {spotifyIsLive && (
+                  <span className={styles.equalizer} aria-hidden="true">
+                    {EQUALIZER_BARS.map(([duration, delay], i) => (
+                      <span
+                        key={i}
+                        style={{ animationDuration: `${duration}s`, animationDelay: `${delay}s` }}
+                      />
+                    ))}
+                  </span>
                 )}
               </>
             ) : (
@@ -118,6 +129,19 @@ export default function Hobbies() {
                   </li>
                 ))}
               </ul>
+            )}
+
+            {spotify.track?.url && (
+              <Button
+                as="a"
+                href={spotify.track.url}
+                target="_blank"
+                rel="noreferrer"
+                variant="secondary"
+                className={styles.cardButton}
+              >
+                {t('hobbies.spotifyListen')}
+              </Button>
             )}
           </Card>
         )}
@@ -134,9 +158,14 @@ export default function Hobbies() {
             </div>
 
             {steamIsLive ? (
-              <p className={styles.trackTitle}>
-                {t('hobbies.steamPlaying')} {steam.game}
-              </p>
+              <div className={styles.gameCard}>
+                {steam.gameImage && (
+                  <img src={steam.gameImage} alt="" className={styles.gameArt} onError={hideOnError} />
+                )}
+                <p className={styles.trackTitle}>
+                  {t('hobbies.steamPlaying')} {steam.game}
+                </p>
+              </div>
             ) : (
               <>
                 <p className={styles.trackTitle}>{t(`hobbies.steamStatus.${steam.status}`)}</p>
@@ -150,9 +179,17 @@ export default function Hobbies() {
                 </ul>
               </>
             )}
-            <a href={STEAM_PROFILE_URL} target="_blank" rel="noreferrer" className={styles.link}>
+
+            <Button
+              as="a"
+              href={STEAM_PROFILE_URL}
+              target="_blank"
+              rel="noreferrer"
+              variant="secondary"
+              className={styles.cardButton}
+            >
               {t('hobbies.steamAdd')}
-            </a>
+            </Button>
           </Card>
         )}
       </div>

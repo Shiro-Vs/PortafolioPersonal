@@ -1,12 +1,16 @@
 .section {
-  max-width: 48rem;
+  max-width: 68rem;
   margin: 0 auto;
   padding: var(--space-xl) var(--space-md);
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr));
   gap: var(--space-md);
 }
 
@@ -57,12 +61,12 @@
 }
 
 .badgeLive {
-  color: var(--color-primary-dark);
-  background: rgba(158, 196, 216, 0.12);
+  color: color-mix(in srgb, var(--color-accent-mint) 55%, #4ade80 45%);
+  background: rgba(74, 222, 128, 0.12);
 }
 
 .badgeLive .badgeDot {
-  background: var(--color-primary-dark);
+  background: color-mix(in srgb, var(--color-accent-mint) 55%, #4ade80 45%);
   box-shadow: var(--glow-accent-mint);
   animation: pulseDot 1.6s ease-in-out infinite;
 }
@@ -95,45 +99,32 @@
   gap: var(--space-sm);
 }
 
-.albumArtWrap {
-  position: relative;
-  flex-shrink: 0;
-}
-
 .albumArt {
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-sm);
   object-fit: cover;
   flex-shrink: 0;
 }
 
 .equalizer {
-  position: absolute;
-  right: 4px;
-  bottom: 4px;
   display: flex;
   align-items: flex-end;
-  gap: 2px;
-  height: 14px;
-  padding: 2px 3px;
-  background: rgba(0, 0, 0, 0.55);
-  border-radius: 3px;
+  gap: 3px;
+  width: 100%;
+  height: 28px;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 12%, black 88%, transparent);
 }
 
 .equalizer span {
-  width: 2.5px;
-  background: var(--color-primary-dark);
-  border-radius: 1px;
-  animation: eqBar 0.9s ease-in-out infinite;
-}
-
-.equalizer span:nth-child(2) {
-  animation-delay: 0.2s;
-}
-
-.equalizer span:nth-child(3) {
-  animation-delay: 0.4s;
+  flex: 1 1 0;
+  min-width: 2px;
+  background: color-mix(in srgb, var(--color-accent-mint) 55%, #4ade80 45%);
+  border-radius: 2px;
+  animation-name: eqBar;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
 }
 
 @keyframes eqBar {
@@ -142,8 +133,22 @@
     height: 3px;
   }
   50% {
-    height: 11px;
+    height: 100%;
   }
+}
+
+.gameCard {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.gameArt {
+  display: block;
+  width: 100%;
+  aspect-ratio: 460 / 215;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
 }
 
 .favoriteList {
@@ -182,6 +187,13 @@
   color: var(--color-text-muted);
 }
 
+.cardButton {
+  margin-top: auto;
+  width: 100%;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .badgeLive .badgeDot {
     animation: none;
@@ -189,7 +201,14 @@
 
   .equalizer span {
     animation: none;
-    height: 7px;
+    height: 14px;
+  }
+}
+
+@media (max-width: 860px) {
+  .section {
+    min-height: auto;
+    justify-content: flex-start;
   }
 }
 
@@ -212,16 +231,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.link {
-  align-self: flex-start;
-  color: var(--color-primary-dark);
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-decoration: none;
-}
-
-.link:hover {
-  text-decoration: underline;
 }
