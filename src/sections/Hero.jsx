@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import Button from '../components/ui/Button';
 import Typewriter from '../components/ui/Typewriter';
 import AnimatedName from '../components/ui/AnimatedName';
+import { useLanguage } from '../i18n/LanguageContext';
 import avatarPhoto from '../assets/images/hero/avatar.webp';
 import styles from './Hero.module.css';
 
-const TYPEWRITER_WORDS = ['Minimalismo', 'Rendimiento', 'UI/UX'];
 const NAME_LINES = ['Robert Vasquez', 'Sanchez'];
 
 const container = {
@@ -19,6 +19,8 @@ const item = {
 };
 
 export default function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section id="sobreMi" className={styles.hero}>
       <motion.div
@@ -28,28 +30,29 @@ export default function Hero() {
         animate="visible"
       >
         <motion.span variants={item} className={styles.eyebrow}>
-          Hola, soy
+          {t('hero.eyebrow')}
         </motion.span>
         <motion.h1 variants={item} className={styles.title}>
           <AnimatedName lines={NAME_LINES} />
         </motion.h1>
         <motion.span variants={item} className={styles.role}>
-          Full Stack Developer · Java/Spring Boot & React
+          {t('hero.role')}
         </motion.span>
         <motion.p variants={item} className={styles.subtitle}>
-          Me gusta transformar ideas en soluciones simples y funcionales. Disfruto aprender por mi
-          cuenta, resolver problemas y cuidar los detalles para que lo que construyo se sienta útil
-          y agradable de usar.
+          {t('hero.subtitle')}
         </motion.p>
         <motion.p variants={item} className={styles.tagline}>
-          <Typewriter words={TYPEWRITER_WORDS} />
+          <Typewriter words={t('hero.words')} />
         </motion.p>
         <motion.div variants={item} className={styles.actions}>
           <Button as="a" href="#proyectos" variant="primary">
-            Ver proyectos
+            {t('hero.ctaProjects')}
           </Button>
           <Button as="a" href="#contacto" variant="secondary">
-            Contactarme
+            {t('hero.ctaContact')}
+          </Button>
+          <Button as="a" href="/cv/CV-Robert-Vasquez.pdf" download variant="secondary">
+            {t('hero.ctaCv')}
           </Button>
         </motion.div>
       </motion.div>

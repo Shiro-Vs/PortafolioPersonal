@@ -92,9 +92,12 @@ async function main() {
     // sin JSON previo, se usan los placeholders por defecto
   }
 
+  const spotify = spotifyResult.status === 'fulfilled' ? spotifyResult.value : previous.spotify;
+  const steam = steamResult.status === 'fulfilled' ? steamResult.value : previous.steam;
+
   const payload = {
-    spotify: spotifyResult.status === 'fulfilled' ? spotifyResult.value : previous.spotify,
-    steam: steamResult.status === 'fulfilled' ? steamResult.value : previous.steam,
+    spotify: { ...spotify, fallback: previous.spotify?.fallback ?? null },
+    steam,
     fetchedAt: new Date().toISOString(),
   };
 

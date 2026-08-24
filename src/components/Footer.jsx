@@ -12,7 +12,7 @@ export default function Footer() {
     <footer className={styles.wrapper}>
       <div className={styles.divider} aria-hidden="true" />
       <div className={styles.footer}>
-        <p>© {new Date().getFullYear()} Robert Vasquez Sanchez</p>
+        <p>© {new Date().getFullYear()} ShiroVs</p>
         <div className={styles.social}>
           {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (
             <a key={href} href={href} target="_blank" rel="noreferrer" aria-label={label}>

@@ -22,17 +22,17 @@ const TAG_ICONS = {
   JavaScript,
 };
 
-export default function ExperienceCard({ role, org, period, description, tags, link }) {
+export default function ExperienceCard({ id, tags, link, t }) {
   return (
     <Card className={styles.card}>
       <div className={styles.header}>
         <div>
-          <h3 className={styles.role}>{role}</h3>
-          <p className={styles.org}>{org}</p>
+          <h3 className={styles.role}>{t(`experience.items.${id}.role`)}</h3>
+          <p className={styles.org}>{t(`experience.items.${id}.org`)}</p>
         </div>
-        <span className={styles.period}>{period}</span>
+        <span className={styles.period}>{t(`experience.items.${id}.period`)}</span>
       </div>
-      <p className={styles.description}>{description}</p>
+      <p className={styles.description}>{t(`experience.items.${id}.description`)}</p>
       <div className={styles.tags}>
         {tags.map((tag) => (
           <span key={tag} className={styles.tag}>
@@ -43,7 +43,7 @@ export default function ExperienceCard({ role, org, period, description, tags, l
       </div>
       {link && (
         <Button as="a" href={link} target="_blank" rel="noreferrer" variant="secondary" className={styles.linkButton}>
-          Visitar sitio
+          {t('experience.visitSite')}
         </Button>
       )}
     </Card>

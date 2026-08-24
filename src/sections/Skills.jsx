@@ -1,6 +1,7 @@
 import gsap from 'gsap';
 import { skillCategories } from '../data/skills';
 import { useGsapScrollTrigger } from '../hooks/useGsapScrollTrigger';
+import { useLanguage } from '../i18n/LanguageContext';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 import TechIcon from '../components/ui/TechIcon';
@@ -8,7 +9,21 @@ import avatarSentado from '../assets/images/skills/avatar-sentado.webp';
 import avatarHerramientas from '../assets/images/skills/avatar-herramientas.webp';
 import styles from './Skills.module.css';
 
-const [lenguajes, herramientas] = skillCategories;
+function CategoryBlock({ category, items, t }) {
+  return (
+    <div className={styles.content}>
+      <h3 className={styles.categoryTitle}>{t(`skills.categories.${category}`)}</h3>
+      <div className={styles.grid}>
+        {items.map(({ name, icon }) => (
+          <Card key={name} className={styles.item}>
+            <TechIcon icon={icon} size={28} />
+            <span>{name}</span>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 function animateIllustration(scopeRef, selector) {
   const illustration = scopeRef.current.querySelector(selector);
@@ -43,6 +58,7 @@ function animateIllustration(scopeRef, selector) {
 }
 
 export default function Skills() {
+  const { t } = useLanguage();
   const scope = useGsapScrollTrigger((scopeRef) => {
     const items = gsap.utils.toArray(`.${styles.item}`, scopeRef.current);
     gsap.set(items, { opacity: 0, y: 20 });
@@ -64,19 +80,13 @@ export default function Skills() {
 
   return (
     <section id="lenguajes" className={styles.section} ref={scope}>
-      <SectionTitle eyebrow="Stack">Lenguajes y herramientas</SectionTitle>
+      <SectionTitle eyebrow={t('skills.eyebrow')}>{t('skills.title')}</SectionTitle>
 
       <div className={styles.layout}>
-        <div className={styles.content}>
-          <h3 className={styles.categoryTitle}>{lenguajes.category}</h3>
-          <div className={styles.grid}>
-            {lenguajes.items.map(({ name, icon }) => (
-              <Card key={name} className={styles.item}>
-                <TechIcon icon={icon} size={28} />
-                <span>{name}</span>
-              </Card>
-            ))}
-          </div>
+        <div className={styles.contentGroup}>
+          {skillCategories.slice(0, 2).map((category) => (
+            <CategoryBlock key={category.category} {...category} t={t} />
+          ))}
         </div>
         <div className={styles.illustrationWrap}>
           <img
@@ -103,16 +113,10 @@ export default function Skills() {
             className={styles.toolsIllustration}
           />
         </div>
-        <div className={styles.content}>
-          <h3 className={styles.categoryTitle}>{herramientas.category}</h3>
-          <div className={styles.grid}>
-            {herramientas.items.map(({ name, icon }) => (
-              <Card key={name} className={styles.item}>
-                <TechIcon icon={icon} size={28} />
-                <span>{name}</span>
-              </Card>
-            ))}
-          </div>
+        <div className={styles.contentGroup}>
+          {skillCategories.slice(2, 4).map((category) => (
+            <CategoryBlock key={category.category} {...category} t={t} />
+          ))}
         </div>
       </div>
     </section>

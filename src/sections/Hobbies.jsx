@@ -1,23 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Music2, Gamepad2 } from 'lucide-react';
+import { useLanguage } from '../i18n/LanguageContext';
 import SectionTitle from '../components/ui/SectionTitle';
 import Card from '../components/ui/Card';
 import styles from './Hobbies.module.css';
 
 const STEAM_PROFILE_URL = 'https://steamcommunity.com/profiles/76561199215601574/';
 
-const STEAM_STATUS_LABELS = {
-  online: 'En línea',
-  busy: 'Ocupado',
-  away: 'Ausente',
-  snooze: 'Inactivo',
-  'looking-to-trade': 'Disponible para intercambiar',
-  'looking-to-play': 'Buscando jugar',
-  offline: 'Desconectado',
-  unknown: 'Sin datos',
-};
-
 export default function Hobbies() {
+  const { t } = useLanguage();
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -38,28 +29,47 @@ export default function Hobbies() {
   const spotify = data?.spotify;
   const steam = data?.steam;
 
+  const hasLiveTrack = Boolean(spotify?.track);
+  const spotifyTrack = hasLiveTrack
+    ? spotify.track
+    : spotify?.fallback
+      ? {
+          title: t('hobbies.spotifyFallbackTitle'),
+          artist: t('hobbies.spotifyFallbackArtist'),
+          albumArt: spotify.fallback.albumArt,
+          url: spotify.fallback.url,
+        }
+      : null;
+  const spotifyHeader = hasLiveTrack
+    ? spotify.isPlaying
+      ? t('hobbies.spotifyPlaying')
+      : t('hobbies.spotifyRecent')
+    : t('hobbies.spotifyFallbackLabel');
+
+  const steamIsOffline = steam && (steam.status === 'unknown' || steam.status === 'offline');
+
   return (
     <section id="pasatiempos" className={styles.section}>
-      <SectionTitle eyebrow="Fuera del código">Pasatiempos</SectionTitle>
+      <SectionTitle eyebrow={t('hobbies.eyebrow')}>{t('hobbies.title')}</SectionTitle>
       <div className={styles.grid}>
-        {spotify?.track && (
+        {spotifyTrack && (
           <Card className={styles.card}>
             <div className={styles.cardHeader}>
               <Music2 size={20} aria-hidden="true" />
-              <span>{spotify.isPlaying ? 'Escuchando ahora' : 'Lo último que escuché'}</span>
+              <span>{spotifyHeader}</span>
             </div>
             <div className={styles.trackRow}>
-              {spotify.track.albumArt && (
-                <img src={spotify.track.albumArt} alt="" className={styles.albumArt} />
+              {spotifyTrack.albumArt && (
+                <img src={spotifyTrack.albumArt} alt="" className={styles.albumArt} />
               )}
               <div className={styles.trackInfo}>
-                <p className={styles.trackTitle}>{spotify.track.title}</p>
-                <p className={styles.trackArtist}>{spotify.track.artist}</p>
+                <p className={styles.trackTitle}>{spotifyTrack.title}</p>
+                <p className={styles.trackArtist}>{spotifyTrack.artist}</p>
               </div>
             </div>
-            {spotify.track.url && (
-              <a href={spotify.track.url} target="_blank" rel="noreferrer" className={styles.link}>
-                Escuchar en Spotify
+            {spotifyTrack.url && (
+              <a href={spotifyTrack.url} target="_blank" rel="noreferrer" className={styles.link}>
+                {t('hobbies.spotifyListen')}
               </a>
             )}
           </Card>
@@ -72,12 +82,21 @@ export default function Hobbies() {
               <span>Steam</span>
             </div>
             {steam.game ? (
-              <p className={styles.trackTitle}>Jugando {steam.game}</p>
+              <p className={styles.trackTitle}>
+                {t('hobbies.steamPlaying')} {steam.game}
+              </p>
             ) : (
-              <p className={styles.trackTitle}>{STEAM_STATUS_LABELS[steam.status] ?? 'Sin datos'}</p>
+              <>
+                <p className={styles.trackTitle}>{t(`hobbies.steamStatus.${steam.status}`)}</p>
+                {steamIsOffline && (
+                  <p className={styles.trackArtist}>
+                    {t('hobbies.steamFavorite')}: {t('hobbies.steamFavoriteGame')}
+                  </p>
+                )}
+              </>
             )}
             <a href={STEAM_PROFILE_URL} target="_blank" rel="noreferrer" className={styles.link}>
-              Agrégame en Steam
+              {t('hobbies.steamAdd')}
             </a>
           </Card>
         )}

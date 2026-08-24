@@ -1,11 +1,12 @@
 .card {
   background: var(--color-surface);
   border-radius: var(--radius-md);
-  box-shadow: var(--shadow-clay-raised);
+  border: var(--border-clay-reflect);
+  box-shadow: var(--shadow-clay-raised), var(--shadow-clay-double-bevel);
   padding: var(--space-md);
   transition: box-shadow var(--transition-clay);
 }
 
 .card:hover {
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45), inset 1px 1px 2px rgba(255, 255, 255, 0.08);
+  box-shadow: var(--shadow-clay-raised-hover), var(--shadow-clay-double-bevel);
 }

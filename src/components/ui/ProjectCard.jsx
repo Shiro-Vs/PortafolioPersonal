@@ -1,3 +1,4 @@
+import { ExternalLink } from 'lucide-react';
 import GitHubIcon from '../../assets/icons/social/github.svg?react';
 import Angular from '../../assets/icons/tech/angular.svg?react';
 import TypeScript from '../../assets/icons/tech/typescript.svg?react';
@@ -24,7 +25,7 @@ import Button from './Button';
 import TechIcon from './TechIcon';
 import styles from './ProjectCard.module.css';
 
-const LINK_LABELS = { demo: 'Demo', frontend: 'Frontend', backend: 'Backend', repo: 'Ver repositorio' };
+const LINK_ICONS = { repo: GitHubIcon, frontend: GitHubIcon, backend: GitHubIcon, demo: ExternalLink, apiDocs: ExternalLink };
 
 const TAG_ICONS = {
   Angular,
@@ -52,16 +53,16 @@ const TAG_ICONS = {
   'Gemini AI': Gemini,
 };
 
-export default function ProjectCard({ title, description, tags, image, links }) {
+export default function ProjectCard({ id, tags, image, links, t }) {
   const linkEntries = links ? Object.entries(links).filter(([, url]) => url) : [];
 
   return (
     <Card className={styles.card}>
       <div className={styles.thumb} aria-hidden="true">
-        {image ? <img src={image} alt="" /> : <span className={styles.thumbFallback}>Próximamente</span>}
+        {image ? <img src={image} alt="" /> : <span className={styles.thumbFallback}>{t('projects.thumbFallback')}</span>}
       </div>
-      <h3 className={styles.title}>{title}</h3>
-      <p className={styles.description}>{description}</p>
+      <h3 className={styles.title}>{t(`projects.items.${id}.title`)}</h3>
+      <p className={styles.description}>{t(`projects.items.${id}.description`)}</p>
       <div className={styles.tags}>
         {tags.map((tag) => (
           <span key={tag} className={styles.tag}>
@@ -72,20 +73,23 @@ export default function ProjectCard({ title, description, tags, image, links }) 
       </div>
       {linkEntries.length > 0 && (
         <div className={styles.links}>
-          {linkEntries.map(([key, url]) => (
-            <Button
-              key={key}
-              as="a"
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-              variant="secondary"
-              className={styles.linkButton}
-            >
-              <GitHubIcon width={16} height={16} aria-hidden="true" />
-              {LINK_LABELS[key] ?? key}
-            </Button>
-          ))}
+          {linkEntries.map(([key, url]) => {
+            const Icon = LINK_ICONS[key] ?? GitHubIcon;
+            return (
+              <Button
+                key={key}
+                as="a"
+                href={url}
+                target="_blank"
+                rel="noreferrer"
+                variant="secondary"
+                className={styles.linkButton}
+              >
+                <Icon width={16} height={16} aria-hidden="true" />
+                {t(`projects.linkLabels.${key}`)}
+              </Button>
+            );
+          })}
         </div>
       )}
     </Card>

@@ -15,8 +15,15 @@
   gap: var(--space-lg);
 }
 
-.content {
+.contentGroup {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
   flex: 1 1 32rem;
+  min-width: 0;
+}
+
+.content {
   min-width: 0;
 }
 
@@ -107,13 +114,35 @@
   .toolsRow {
     flex-direction: column;
     align-items: center;
+    gap: var(--space-sm);
   }
 
-  .illustrationWrap {
-    max-width: 16rem;
+  /* Intercala texto e ilustración: contenido, imagen, contenido, imagen
+     (en el DOM .toolsRow trae la imagen antes que el texto, así que se
+     reordena solo con `order` para no afectar el layout de escritorio). */
+  .toolsRow .illustrationWrap {
+    order: 2;
+  }
+
+  .toolsRow .contentGroup {
+    order: 1;
+  }
+
+  .toolsRow {
+    margin-top: var(--space-sm);
+  }
+
+  .illustrationWrap,
+  .toolsRow .illustrationWrap {
+    /* En columna, flex-basis controla la altura (no el ancho): sin este
+       reset, el "22rem"/"21rem" pensado para el ancho de fila en escritorio
+       fuerza una caja el doble de alta que la imagen real, dejando hueco
+       vacío debajo donde el glow queda flotando. */
+    flex: 0 0 auto;
+    max-width: 14rem;
   }
 
   .toolsRow .illustrationWrap {
-    max-width: 15rem;
+    max-width: 13rem;
   }
 }

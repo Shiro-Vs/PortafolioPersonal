@@ -69,12 +69,22 @@
     width: 100%;
   }
 
+  .form {
+    width: 100%;
+  }
+
   .thinkingAvatar {
     flex: none;
     width: auto;
     height: auto;
     max-width: min(100%, 20rem);
     max-height: min(45vh, 22rem);
+  }
+}
+
+@media (max-width: 767px) {
+  .section {
+    padding-bottom: 5rem;
   }
 }
 

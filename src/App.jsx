@@ -3,6 +3,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Ambient from './components/Ambient';
 import Nav from './components/Nav';
 import Hero from './sections/Hero';
+import Highlights from './sections/Highlights';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
@@ -30,6 +31,7 @@ export default function App() {
       <Nav />
       <main>
         <Hero />
+        <Highlights />
         <Skills />
         <Projects />
         <Experience />

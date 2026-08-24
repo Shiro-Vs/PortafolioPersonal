@@ -16,6 +16,11 @@
   --shadow-clay-raised: 0 6px 14px rgba(0, 0, 0, 0.4), inset 1px 1px 2px rgba(255, 255, 255, 0.06);
   --shadow-clay-pressed: inset 0 3px 8px rgba(0, 0, 0, 0.45);
   --shadow-clay-soft: 0 4px 10px rgba(0, 0, 0, 0.3);
+  --shadow-clay-raised-hover: 0 14px 28px rgba(0, 0, 0, 0.5), inset 1px 1px 2px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-clay-double-bevel: inset 2px 2px 3px rgba(255, 255, 255, 0.08), inset -3px -3px 6px rgba(0, 0, 0, 0.35);
+  --border-clay-reflect: 1px solid rgba(255, 255, 255, 0.07);
+  --glow-accent-mint: 0 0 0 1px rgba(79, 122, 92, 0.35), 0 0 24px rgba(79, 122, 92, 0.25);
+  --glow-accent-lilac: 0 0 0 1px rgba(178, 101, 63, 0.35), 0 0 24px rgba(178, 101, 63, 0.25);
 
   /* Radios */
   --radius-sm: 16px;

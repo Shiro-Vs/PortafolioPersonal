@@ -1,0 +1,40 @@
+.section {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: var(--space-lg) var(--space-md);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--space-sm);
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  text-align: center;
+  padding: var(--space-md);
+  transition: box-shadow var(--transition-clay), transform var(--transition-clay);
+}
+
+.icon {
+  color: var(--color-primary-dark);
+}
+
+.value {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.label {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+}
+
+.glow:hover {
+  box-shadow: var(--shadow-clay-raised-hover), var(--shadow-clay-double-bevel), var(--glow-accent-mint);
+}

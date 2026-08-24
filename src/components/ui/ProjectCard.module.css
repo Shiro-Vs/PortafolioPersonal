@@ -56,13 +56,13 @@
 
 .links {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: var(--space-sm);
   margin-top: var(--space-xs);
 }
 
 .linkButton {
-  width: 100%;
+  flex: 1 1 auto;
   padding: 0.55rem 1.1rem;
   font-size: 0.9rem;
   gap: 0.5rem;

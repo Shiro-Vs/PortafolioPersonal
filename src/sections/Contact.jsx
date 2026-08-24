@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../i18n/LanguageContext';
 import SectionTitle from '../components/ui/SectionTitle';
 import Button from '../components/ui/Button';
 import Footer from '../components/Footer';
@@ -28,6 +29,7 @@ const CONTACT_LINKS = [
 ];
 
 export default function Contact() {
+  const { t } = useLanguage();
   const [status, setStatus] = useState('');
   const [formHeight, setFormHeight] = useState(null);
   const formRef = useRef(null);
@@ -44,7 +46,7 @@ export default function Contact() {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setStatus('Gracias por tu mensaje. ¡Te responderé pronto!');
+    setStatus(t('contact.successMessage'));
     formRef.current?.reset();
     if (messageRef.current) messageRef.current.style.height = '';
     clearTimeout(timeoutRef.current);
@@ -60,7 +62,7 @@ export default function Contact() {
   return (
     <section id="contacto" className={styles.section}>
       <div className={styles.inner}>
-        <SectionTitle eyebrow="Hablemos">Contacto</SectionTitle>
+        <SectionTitle eyebrow={t('contact.eyebrow')}>{t('contact.title')}</SectionTitle>
 
         <div className={styles.layout}>
           <div
@@ -100,17 +102,17 @@ export default function Contact() {
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5, ease: 'easeOut' }}
           >
-            <h3 className={styles.formHeading}>¿Tienes un proyecto en mente?</h3>
+            <h3 className={styles.formHeading}>{t('contact.formHeading')}</h3>
             <label className={styles.field}>
-              Nombre
+              {t('contact.nameLabel')}
               <input type="text" name="nombre" required />
             </label>
             <label className={styles.field}>
-              Correo
+              {t('contact.emailLabel')}
               <input type="email" name="correo" required />
             </label>
             <label className={styles.field}>
-              Mensaje
+              {t('contact.messageLabel')}
               <textarea
                 ref={messageRef}
                 name="mensaje"
@@ -121,7 +123,7 @@ export default function Contact() {
               />
             </label>
             <Button type="submit" variant="primary">
-              Enviar mensaje
+              {t('contact.submit')}
             </Button>
             <p className={styles.status} role="status" aria-live="polite">
               {status}

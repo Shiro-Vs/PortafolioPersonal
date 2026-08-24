@@ -16,24 +16,37 @@ export function useSpaceEntrance() {
     if (reduced) return;
 
     const ctx = gsap.context(() => {
-      const sections = gsap.utils.toArray('main > section');
-      sections.forEach((section) => {
-        gsap.fromTo(
-          section,
-          { scale: 0.82, opacity: 0.4 },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 0.8,
-            ease: 'power3.out',
-            scrollTrigger: {
-              trigger: section,
-              start: 'top center',
-              toggleActions: 'play reverse play reverse',
-            },
-          },
-        );
-      });
+      const mm = gsap.matchMedia();
+
+      // En móvil las secciones ocupan más alto que el viewport, así que
+      // activar el efecto recién al llegar al centro deja un tramo largo
+      // de scroll con la siguiente sección "apagada" (hueco visual). Se
+      // adelanta el disparo en pantallas chicas para que aparezca apenas
+      // entra en vista.
+      mm.add(
+        { isMobile: '(max-width: 767px)', isDesktop: '(min-width: 768px)' },
+        (context) => {
+          const { isMobile } = context.conditions;
+          const sections = gsap.utils.toArray('main > section');
+          sections.forEach((section) => {
+            gsap.fromTo(
+              section,
+              { scale: 0.82, opacity: 0.4 },
+              {
+                scale: 1,
+                opacity: 1,
+                duration: 0.8,
+                ease: 'power3.out',
+                scrollTrigger: {
+                  trigger: section,
+                  start: isMobile ? 'top 85%' : 'top center',
+                  toggleActions: 'play reverse play reverse',
+                },
+              },
+            );
+          });
+        },
+      );
     });
 
     return () => ctx.revert();
