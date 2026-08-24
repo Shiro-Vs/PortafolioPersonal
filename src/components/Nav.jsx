@@ -25,12 +25,20 @@ export default function Nav() {
     // condición de carrera de IntersectionObserver cuando varias secciones
     // reportan cambios en el mismo lote (p. ej. Contacto, ahora muy alta al
     // incluir el footer).
+    //
+    // Los offsets se calculan una sola vez (no en cada scroll): usar
+    // getBoundingClientRect() en el handler de scroll fuerza un reflow del
+    // navegador en cada frame, y sumado a las animaciones de GSAP corriendo
+    // en simultáneo (p. ej. al saltar de una punta a otra de la página con
+    // el Nav) generaba lag notorio en celulares.
+    let offsets = elements.map((el) => el.offsetTop);
+
     function updateActive() {
-      const threshold = window.innerHeight * 0.4;
+      const threshold = window.scrollY + window.innerHeight * 0.4;
       let current = elements[0]?.id;
-      for (const el of elements) {
-        if (el.getBoundingClientRect().top <= threshold) {
-          current = el.id;
+      for (let i = 0; i < elements.length; i++) {
+        if (offsets[i] <= threshold) {
+          current = elements[i].id;
         }
       }
       if (current) setActive(current);
@@ -46,12 +54,25 @@ export default function Nav() {
       });
     }
 
+    function recomputeOffsets() {
+      offsets = elements.map((el) => el.offsetTop);
+      updateActive();
+    }
+
     updateActive();
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+
+    // Recalcula los offsets cada vez que cambia el alto de la página, sin
+    // importar la causa (fuentes/imágenes que terminan de cargar, el
+    // fetch async de Pasatiempos, un cambio de idioma que alarga el texto).
+    // Mucho más confiable que recalcular solo en 'resize'/'load', y no
+    // agrega costo durante el scroll en sí.
+    const resizeObserver = new ResizeObserver(recomputeOffsets);
+    resizeObserver.observe(document.body);
+
     return () => {
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      resizeObserver.disconnect();
     };
   }, []);
 
