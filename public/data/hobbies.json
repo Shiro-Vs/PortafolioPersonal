@@ -1,11 +1,7 @@
 {
   "spotify": {
     "isPlaying": false,
-    "track": null,
-    "fallback": {
-      "albumArt": null,
-      "url": null
-    }
+    "track": null
   },
   "steam": {
     "status": "unknown",

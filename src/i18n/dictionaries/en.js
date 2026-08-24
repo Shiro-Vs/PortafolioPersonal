@@ -94,9 +94,14 @@ export const en = {
     spotifyPlaying: 'Listening now',
     spotifyRecent: 'Last listened to',
     spotifyListen: 'Listen on Spotify',
-    spotifyFallbackLabel: 'My favorite coding playlist',
-    spotifyFallbackTitle: 'Lo-fi beats for coding',
-    spotifyFallbackArtist: 'Personal playlist',
+    spotifyOfflineLabel: 'My coding favorites',
+    spotifyFavorites: {
+      lofi: { title: 'Lo-fi beats for coding', artist: 'Personal playlist' },
+      synthwave: { title: 'Synthwave Focus', artist: 'Personal playlist' },
+      focus: { title: 'Deep Focus', artist: 'Personal playlist' },
+    },
+    liveBadge: 'Live',
+    offlineBadge: 'Offline',
     steamStatus: {
       online: 'Online',
       busy: 'Busy',
@@ -108,9 +113,13 @@ export const en = {
       unknown: 'Currently offline',
     },
     steamPlaying: 'Playing',
-    steamFavorite: 'Playing in my free time',
+    steamOfflineLabel: 'Playing in my free time',
+    steamFavorites: {
+      game1: 'Exploring something new',
+      game2: 'Hollow Knight',
+      game3: 'Stardew Valley',
+    },
     steamAdd: 'Add me on Steam',
-    steamFavoriteGame: 'Exploring something new',
   },
   contact: {
     eyebrow: "Let's talk",

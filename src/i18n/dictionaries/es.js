@@ -94,9 +94,14 @@ export const es = {
     spotifyPlaying: 'Escuchando ahora',
     spotifyRecent: 'Lo último que escuché',
     spotifyListen: 'Escuchar en Spotify',
-    spotifyFallbackLabel: 'Mi playlist de desarrollo favorita',
-    spotifyFallbackTitle: 'Lo-fi para programar',
-    spotifyFallbackArtist: 'Playlist personal',
+    spotifyOfflineLabel: 'Mis favoritos para programar',
+    spotifyFavorites: {
+      lofi: { title: 'Lo-fi para programar', artist: 'Playlist personal' },
+      synthwave: { title: 'Synthwave Focus', artist: 'Playlist personal' },
+      focus: { title: 'Deep Focus', artist: 'Playlist personal' },
+    },
+    liveBadge: 'En vivo',
+    offlineBadge: 'Fuera de línea',
     steamStatus: {
       online: 'En línea',
       busy: 'Ocupado',
@@ -108,9 +113,13 @@ export const es = {
       unknown: 'Actualmente desconectado',
     },
     steamPlaying: 'Jugando',
-    steamFavorite: 'Jugando en ratos libres',
+    steamOfflineLabel: 'Jugando en ratos libres',
+    steamFavorites: {
+      game1: 'Explorando algo nuevo',
+      game2: 'Hollow Knight',
+      game3: 'Stardew Valley',
+    },
     steamAdd: 'Agrégame en Steam',
-    steamFavoriteGame: 'Explorando algo nuevo',
   },
   contact: {
     eyebrow: 'Hablemos',
