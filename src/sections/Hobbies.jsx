@@ -64,8 +64,16 @@ export default function Hobbies() {
     }
 
     load();
+
+    // Vuelve a consultar cada 30s mientras la pestaña esté abierta y
+    // visible, para que un cambio de canción/juego se refleje sin recargar.
+    const interval = setInterval(() => {
+      if (!document.hidden) load();
+    }, 30000);
+
     return () => {
       cancelled = true;
+      clearInterval(interval);
     };
   }, []);
 
@@ -153,7 +161,7 @@ export default function Hobbies() {
               <span>Steam</span>
               <LiveBadge
                 live={steamIsLive}
-                label={t(steamIsLive ? 'hobbies.liveBadge' : 'hobbies.offlineBadge')}
+                label={steamIsLive ? t('hobbies.liveBadge') : t(`hobbies.steamStatus.${steam.status}`)}
               />
             </div>
 
@@ -168,7 +176,9 @@ export default function Hobbies() {
               </div>
             ) : (
               <>
-                <p className={styles.trackTitle}>{t(`hobbies.steamStatus.${steam.status}`)}</p>
+                {(steam.status === 'unknown' || steam.status === 'offline') && (
+                  <p className={styles.trackTitle}>{t(`hobbies.steamStatus.${steam.status}`)}</p>
+                )}
                 <p className={styles.trackArtist}>{t('hobbies.steamOfflineLabel')}:</p>
                 <ul className={styles.chipList}>
                   {steamFavorites.map(({ id }) => (
