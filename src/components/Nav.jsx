@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { User, Trophy, Code2, FolderGit2, Briefcase, Gamepad2, Mail } from 'lucide-react';
+import { User, Trophy, Code2, FolderGit2, Briefcase, Mail } from 'lucide-react';
 import { useLanguage } from '../i18n/LanguageContext';
 import styles from './Nav.module.css';
 
@@ -9,7 +9,6 @@ const SECTIONS = [
   { id: 'lenguajes', Icon: Code2 },
   { id: 'proyectos', Icon: FolderGit2 },
   { id: 'experiencia', Icon: Briefcase },
-  { id: 'pasatiempos', Icon: Gamepad2 },
   { id: 'contacto', Icon: Mail },
 ];
 
@@ -63,10 +62,9 @@ export default function Nav() {
     window.addEventListener('scroll', onScroll, { passive: true });
 
     // Recalcula los offsets cada vez que cambia el alto de la página, sin
-    // importar la causa (fuentes/imágenes que terminan de cargar, el
-    // fetch async de Pasatiempos, un cambio de idioma que alarga el texto).
-    // Mucho más confiable que recalcular solo en 'resize'/'load', y no
-    // agrega costo durante el scroll en sí.
+    // importar la causa (fuentes/imágenes que terminan de cargar, un cambio
+    // de idioma que alarga el texto). Mucho más confiable que recalcular
+    // solo en 'resize'/'load', y no agrega costo durante el scroll en sí.
     const resizeObserver = new ResizeObserver(recomputeOffsets);
     resizeObserver.observe(document.body);
 

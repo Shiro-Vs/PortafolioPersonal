@@ -2,12 +2,12 @@ import { useEffect } from 'react';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Ambient from './components/Ambient';
 import Nav from './components/Nav';
+import HobbiesWidget from './components/HobbiesWidget';
 import Hero from './sections/Hero';
 import Highlights from './sections/Highlights';
 import Skills from './sections/Skills';
 import Projects from './sections/Projects';
 import Experience from './sections/Experience';
-import Hobbies from './sections/Hobbies';
 import Contact from './sections/Contact';
 import { useSpaceEntrance } from './hooks/useSpaceEntrance';
 
@@ -29,13 +29,13 @@ export default function App() {
     <>
       <Ambient />
       <Nav />
+      <HobbiesWidget />
       <main>
         <Hero />
         <Highlights />
         <Skills />
         <Projects />
         <Experience />
-        <Hobbies />
         <Contact />
       </main>
     </>

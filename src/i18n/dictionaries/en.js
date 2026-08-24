@@ -5,7 +5,6 @@ export const en = {
     lenguajes: 'Skills',
     proyectos: 'Projects',
     experiencia: 'Experience',
-    pasatiempos: 'Hobbies',
     contacto: 'Contact',
   },
   hero: {
@@ -102,6 +101,8 @@ export const en = {
     },
     liveBadge: 'Live',
     offlineBadge: 'Offline',
+    widgetToggle: 'View Spotify and Steam activity',
+    widgetIdle: 'My favorites',
     steamStatus: {
       online: 'Online',
       busy: 'Busy',
