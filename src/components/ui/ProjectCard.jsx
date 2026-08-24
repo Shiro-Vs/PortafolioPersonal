@@ -58,8 +58,14 @@ export default function ProjectCard({ id, tags, image, links, t }) {
 
   return (
     <Card className={styles.card}>
-      <div className={styles.thumb} aria-hidden="true">
-        {image ? <img src={image} alt="" /> : <span className={styles.thumbFallback}>{t('projects.thumbFallback')}</span>}
+      <div className={styles.thumb}>
+        {image ? (
+          <img src={image} alt={t(`projects.items.${id}.title`)} loading="lazy" />
+        ) : (
+          <span className={styles.thumbFallback} aria-hidden="true">
+            {t('projects.thumbFallback')}
+          </span>
+        )}
       </div>
       <h3 className={styles.title}>{t(`projects.items.${id}.title`)}</h3>
       <p className={styles.description}>{t(`projects.items.${id}.description`)}</p>
